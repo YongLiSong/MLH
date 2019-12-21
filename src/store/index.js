@@ -5,10 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    navId: ''
   },
   mutations: {
+    getNavId (state, id) {
+      state.navId = id
+    }
+
   },
   actions: {
+
   },
   modules: {
   }
