@@ -1,28 +1,109 @@
 <template>
-    <div v-if="titleList.length">
-        <ul v-for="(data,index) in titleList" :key="index">
-            <h3>{{data.name}}</h3>
-            <li v-for="goodsdata in titleList[index].events" :key="goodsdata.eventId">
-                <img :src="goodsdata.imageUrl" alt="">
-            </li>
-        </ul>
+  <div>
+    <swiper v-if="bannerlist.length" class="bannerbox">
+     <div class="swiper-slide" v-for="data in bannerlist" :key="data.di" >
+         <img :src="data.main_image" @click="handeclick(data.di)">
+         <div class="bannercontent">
+           <h2>{{data.main_title}}</h2>
+           <span>{{data.sub_title}}</span>
+           <span>{{data.description}}</span>
+         </div>
+     </div>
+    </swiper>
+    <div v-if="list.length" class="listbox">
+       <ul v-for='data in list' :key="data.name">
+        <h2>{{data.name}}</h2>
+        <li v-for="data2 in data.events" :key="data2.eventId" @click="golist(data2.eventId)">
+          <img :src="data2.imageUrl" :alt="data2.englishName">
+          <div class="listcontent">
+            <h3>{{data2.englishName}}</h3>
+            <p>{{data2.chineseName}}</p>
+            <p>{{data2.discountText}}</p>
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
 </template>
 <script>
-import { Axios } from 'axios'
+import Axios from 'axios'
+import swiper from '@/components/Swiper'
+
 export default {
   data () {
     return {
-      titleList: []
+      bannerlist: [],
+      list: []
     }
   },
   mounted () {
     Axios({
-      url: 'http://www.mei.com/appapi/home/eventForH5?params=%7B%7D&timestamp=1576909327490&summary=1cc384aff188e5b0ec89cfc3c03947db&platform_code=H5'
+      url: `http://www.meihigo.hk/appapi/home/mktBannerApp/v3?silo_id=2013000100000000008&platform_code=PLATEFORM_H5`
     }).then(res => {
-      console.log(res.data.lists)
-      this.titleList = res.data.lists
+      this.bannerlist = res.data.banners
     })
+    Axios({
+      url: 'http://www.meihigo.hk/appapi/home/eventForH5?params=%7B%7D&timestamp=1576985820987&summary=fc07b5d4d9c9c1d1131594ebc6906c57&platform_code=H5'
+    }).then(res => {
+      this.list = res.data.lists
+    })
+  },
+  components: {
+    swiper
   }
 }
 </script>
+<style lang="scss" scoped>
+.bannerbox{
+      position: relative;
+        top: 0;
+        width: 100%;
+        top:-96px;
+    }
+  .bannercontent{
+    h2{
+      font-size: 30px;
+    }
+    height: 100px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%)
+  }
+   img{
+        width: 100%;
+    }
+
+.listbox{
+  ul{
+    margin-bottom:30px;
+    h2{
+      margin-left: 20px;
+    }
+  }
+  h2{
+    font-size: 26px;
+    font-weight: normal;
+  }
+  li{
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px 16px;
+  }
+  .listcontent{
+    h3{
+      font-weight: normal;
+    }
+    position: absolute;
+    bottom: 20px;
+    left:30px;
+    color: white;
+  }
+}
+
+</style>

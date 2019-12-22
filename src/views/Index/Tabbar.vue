@@ -2,7 +2,7 @@
     <div>
         <ul>
             <!-- <li tag="li" to="">推荐</li> -->
-            <router-link  v-for="data in routerlist" :key="data.id" tag="li" active-class="active" :to="data.path">
+            <router-link  v-for="data in routerlist" :key="data.id" tag="li" active-class="active" :to="data.path" @click.native="getid(data.id)">
               <span>
                 {{data.name}}
               </span>
@@ -13,6 +13,8 @@
 </template>
 <script>
 import Axios from 'axios'
+import Vuex from 'vuex'
+
 export default {
   data () {
     return {
@@ -20,6 +22,7 @@ export default {
       routerlist: [
         {
           path: 'index',
+          id: '2013000100000000008',
           name: '推荐'
         },
         {
@@ -53,24 +56,18 @@ export default {
           name: '婴童'
         },
         {
-          path: 'index',
+          path: 'index2',
           name: '即将推出'
         }
       ]
     }
   },
   methods: {
-    heanderclick (id) {
-      this.$store.commit('getNavId', id)
-      console.log(this.$store.state.navId)
-      console.log('123123')
+    getid (id) {
+      this.$store.dispatch('getNavId', id)
+      console.log(this.$store.state.bannerlist)
+      console.log('id:' + id)
     }
-  },
-  mounted () {
-    // Axios.get('http://www.mei.com/appapi/silo/navigationAll/v3?timestamp=1576578231421&summary=01ea05ec80bceb3efa31547cad850ef9').then(res => {
-    //   this.navlist = res.data.lists
-    //   console.log(res.data)
-    // })
   }
 }
 </script>
@@ -83,18 +80,16 @@ div{
 
     ul{
       .active{
-  color: black;
-}
+          color: black;
+          }
+        color: #fff;
         margin-top: 10px;
-        width: 125%;
-        display: flex;
+        width: 110%;
+        padding-left:10px;
         li{
-            color: #fff;
-            flex-flow: row;
-            &:last-of-type{
-                word-wrap:normal;
-            }
-            flex: 1;
+
+          margin-right: 20px;
+            float: left;
             line-height: 36px;
             font-size: 16px;
             text-align: center;
