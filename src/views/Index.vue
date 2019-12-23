@@ -3,7 +3,7 @@
         <seatch></seatch>
         <tabbar></tabbar>
         <div class="ntn_height"></div>
-        <router-view></router-view>
+        <router-view v-if="$store.state.allShow"></router-view>
     </div>
 </template>
 <script>

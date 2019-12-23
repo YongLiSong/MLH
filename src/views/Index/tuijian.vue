@@ -11,6 +11,7 @@
      </div>
     </swiper>
     <div class="newday" v-if="newday.length">
+      <!-- 每日新栏 -->
       <ul v-for="(newdata,index) in newday" :key="index" >
         <h3>{{newdata.main_title}}<span>{{newdata.sub_title}}</span></h3>
         <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa">
@@ -80,7 +81,6 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
-
     }
   .bannercontent{
     h2{
@@ -106,8 +106,8 @@ export default {
    img{
         width: 100%;
     }
-
 .listbox{
+  position: relative;
   ul{
     margin-bottom:0.3rem;
     h2{
@@ -137,5 +137,56 @@ export default {
     }
   }
 }
+.newday{
+  width: 100%;
+  height: 1.8rem;
+  ul{
+    padding: 0.1rem;
+    box-sizing: border-box;
+    float: left;
+    width:45%;
+    height: 1.5rem;
+    margin-left: 3%;
+    position: relative;
+    &:after{
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba($color: #000000, $alpha: 0.03)
+      }
+    h3{
+      font-weight:500;
+      font-size: 0.15rem;
+    }
+    h3>span{
+      margin-left: 0.1rem;
+      font-size:0.13rem;
+      color:#777;
+    }
+    li{
+      background-color: rgba($color: #000000, $alpha: 0.03);
+      margin-right: 0.15rem;
+      float: left;
+      width: 40%;
+      position: relative;
 
+      img{
+        width: 100%;
+        float: left;
+      }
+      span{
+        font-size: 0.1rem;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        left: 0.06rem;
+        border: 1px solid #000;
+      }
+    }
+  }
+}
 </style>
