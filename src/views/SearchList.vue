@@ -1,12 +1,13 @@
 <template>
     <div v-if="meiInfo">
-      <listnav>
-            <p>{{meiInfo.eventName}}</p>
-      </listnav>
+         <div class="list_top">
+          <i class="iconfont icon-icon-test59"></i>
+          <p>{{meiInfo.eventName}}</p>
+        </div>
         <ul v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
-            <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.productId)">
+            <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.glsCode)">
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>
@@ -19,37 +20,25 @@
 </template>
 
 <script>
-import listnav from '@/components/Listnav'
 import Axios from 'axios'
-import { Indicator } from 'mint-ui'
+
 export default {
   data () {
     return {
       meiInfo: null,
-      productsTnfo: null,
       meiInfoList: [],
       num: 1
     }
   },
-  components: {
-    listnav
-  },
   mounted () {
-    Indicator.open({
-      text: '加载中...',
-      spinnerType: 'fading-circle'
-    })
     // console.log(this.$route.params.eventId)
     Axios({
-      url: `http://www.mei.com/appapi/event/product/v3?pageIndex=1&categoryId=${this.$route.params.eventId}&key=&sort=&timestamp=1576891751829&summary=81b8528ab12d09d311a56f6ca8e954a1&platform_code=H5`
+      url: `http://www.meihigo.hk/appapi/search/searchKey/v3?pageIndex=1&q=${this.$route.params.goodsname}&sort=&key=&brandNameEn=${this.$route.params.goodsname}&brandNameZh=&type=brand`
     }).then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.meiInfo = res.data
-      this.productsTnfo = res.data.products
       this.meiInfoList = res.data.products
       console.log(this.meiInfoList)
-      // console.log(this.productsTnfo)
-      Indicator.close()
     })
   },
   methods: {
@@ -64,9 +53,9 @@ export default {
         return
       }
       Axios({
-        url: `http://www.meihigo.hk/appapi/event/product/v3?pageIndex=${this.num}&categoryId=${this.$route.params.eventId}&key=&sort=&timestamp=1577068190462&summary=fa0dddb80e97b05bf029ae6d9a4177a3&platform_code=H5`
+        url: `http://www.meihigo.hk/appapi/search/searchKey/v3?pageIndex=${this.num}&q=${this.$route.params.goodsname}&sort=&key=&brandNameEn=${this.$route.params.goodsname}&brandNameZh=&type=brand`
       }).then(res => {
-        // console.log(this.meiInfoList)
+        console.log(this.meiInfoList)
         this.meiInfoList = [...this.meiInfoList, ...res.data.products]
       })
     }
@@ -76,6 +65,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list_top{
+    width: 100%;
+    height: 0.42rem;
+    background: #fff;
+    display: flex;
+    p{
+      margin: 0 auto;
+      font-weight: bold;
+      line-height: 0.42rem;
+      font-size: 0.2rem;
+      color: #2a2a2a;
+    }
+  }
   ul{
     display: flex;
     justify-content: space-around;

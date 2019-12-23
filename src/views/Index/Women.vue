@@ -3,7 +3,7 @@
     <div>
     <div class="bannerbox">
       <div class="swiper-slide">
-        <img src="https://img.alicdn.com/tfs/TB1WQ91o4z1gK0jSZSgXXa0.vwrema-750-900.jpg" @click="handeclick(data.di)" />
+        <img src="TB1WQ91o4z1gK0jSZSgXXavwpXa-750-900.jpg" @click="handeclick(data.di)" />
       </div>
     </div>
     <div v-if="list.length" class="listbox">
