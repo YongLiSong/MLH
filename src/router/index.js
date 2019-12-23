@@ -6,6 +6,7 @@ import Detail from '@/views/Detail'
 import List from '@/views/List'
 import Login from '@/views/Login'
 import ShoppingCar from '@/views/ShoppingCar'
+import Center from '@/views/Center'
 
 import Crossborder from '@/views/Index/Crossborder'
 import Cosmetics from '@/views/Index/Cosmetics'
@@ -79,6 +80,10 @@ const routes = [
   {
     path: '/shoppingcar',
     component: ShoppingCar
+  },
+  {
+    path: '/center',
+    component: Center
   },
   {
     path: '*',
