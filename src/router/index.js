@@ -23,7 +23,7 @@ const routes = [
     component: Index,
     children: [
       {
-        path: '/index',
+        path: 'tuijian',
         component: tuijian
       },
       {
@@ -65,7 +65,7 @@ const routes = [
     component: Detail
   },
   {
-    path: '/list',
+    path: '/list/:eventId',
     component: List
   },
   {

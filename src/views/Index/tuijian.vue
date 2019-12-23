@@ -48,6 +48,12 @@ export default {
       this.list = res.data.lists
     })
   },
+  methods: {
+    golist (id) {
+      // console.log(this.$router)
+      this.$router.push(`/List/${id}`)
+    }
+  },
   components: {
     swiper
   }
