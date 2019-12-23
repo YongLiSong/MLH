@@ -33,6 +33,6 @@ export default {
 
 <style lang="scss" scoped>
     img{
-        width: 100px;
+        width: 1.00rem;
     }
 </style>

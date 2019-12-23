@@ -2,7 +2,7 @@
   <div>
     <div class="bannerbox">
       <div class="swiper-slide">
-        <img src="https://img.alicdn.com/tfs/TB1WQ91o4z1gK0jSZSgXXavwpXa-750-900.jpg" @click="handeclick(data.di)" />
+        <img src="https://img.alicdn.com/tfs/TB1WQ91o4z1gK0jSZSgXXavwrema-750-900.jpg" @click="handeclick(data.di)" />
       </div>
     </div>
     <div v-if="list.length" class="listbox">
@@ -46,7 +46,7 @@ export default {
       position: relative;
         top: 0;
         width: 100%;
-        top:-96px;
+        top:-0.96rem;
     }
    img{
         width: 100%;
@@ -54,27 +54,27 @@ export default {
 
 .listbox{
   ul{
-    margin-bottom:30px;
+    margin-bottom:0.30rem;
     h2{
-      margin-left: 20px;
+      margin-left: 0.20rem;
     }
   }
   h2{
-    font-size: 26px;
+    font-size: 0.26rem;
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
-    padding: 10px 16px;
+    padding: 0.10rem 0.16rem;
   }
   .listcontent{
     h3{
       font-weight: normal;
     }
     position: absolute;
-    bottom: 20px;
-    left:30px;
+    bottom: 0.20rem;
+    left:0.30rem;
     color: white;
   }
 }

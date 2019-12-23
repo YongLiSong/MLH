@@ -34,27 +34,27 @@ export default {
 <style lang="scss" scoped>
    .listbox{
   ul{
-    margin-bottom:30px;
+    margin-bottom:0.30rem;
     h2{
-      margin-left: 20px;
+      margin-left: 0.20rem;
     }
   }
   h2{
-    font-size: 26px;
+    font-size: 0.26rem;
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
-    padding: 10px 16px;
+    padding: 0.10rem 0.16rem;
   }
   .listcontent{
     h3{
       font-weight: normal;
     }
     position: absolute;
-    bottom: 20px;
-    left:30px;
+    bottom: 0.20rem;
+    left:0.30rem;
     color: white;
   }
    }

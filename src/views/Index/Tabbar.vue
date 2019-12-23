@@ -83,15 +83,15 @@ div{
           color: black;
           }
         color: #fff;
-        margin-top: 10px;
+        margin-top: 0.10rem;
         width: 110%;
-        padding-left:10px;
+        padding-left:0.10rem;
         li{
 
-          margin-right: 20px;
+          margin-right: 0.20rem;
             float: left;
-            line-height: 36px;
-            font-size: 16px;
+            line-height: 0.36rem;
+            font-size: 0.16rem;
             text-align: center;
         }
     }
