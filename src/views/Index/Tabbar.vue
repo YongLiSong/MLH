@@ -73,25 +73,41 @@ export default {
 </script>
 <style lang="scss" scoped>
 div{
-    overflow:scroll;
+   width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
     position: relative;
     z-index: 100;
 }
-
     ul{
+      height: 0.5rem;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
       .active{
-          color: black;
+          position: relative;
+          &::after{
+              content: "";
+              display: block;
+              width: 0.2rem;
+              height: 0.03rem;
+              background: #fff;
+              border-radius: 0.15rem;
+              position: absolute;
+              top: 0.24rem;
+              left: 50%;
+              margin-left: -0.1rem;
+          }
           }
         color: #fff;
-        margin-top: 10px;
-        width: 110%;
-        padding-left:10px;
+        margin-top: 0.1rem;
+        width: 100%;
+        padding-left:0.1rem;
         li{
-
-          margin-right: 20px;
+          margin-right: 0.2rem;
             float: left;
-            line-height: 36px;
-            font-size: 16px;
+            font-size: 0.16rem;
             text-align: center;
         }
     }

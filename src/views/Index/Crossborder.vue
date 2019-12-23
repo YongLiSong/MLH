@@ -52,26 +52,32 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .bannerbox{
-      position: relative;
+.bannerbox{
+      position: absolute;
         top: 0;
         width: 100%;
-        top:-96px;
+
     }
   .bannercontent{
     h2{
-      font-size: 30px;
+      font-size: 0.28rem;
     }
-    height: 100px;
+    height: 0.1rem;
     display: flex;
     flex-flow: column;
     justify-content: space-around;
     text-align: center;
     color: #fff;
     position: absolute;
-    bottom: 50px;
+    bottom: 0.64rem;
     left: 50%;
-    transform: translate(-50%)
+    transform: translate(-50%);
+    .sub_title{
+      font-size: 0.16rem;
+    }
+    .description{
+      font-size: 0.16rem;
+    }
   }
    img{
         width: 100%;
@@ -79,28 +85,33 @@ export default {
 
 .listbox{
   ul{
-    margin-bottom:30px;
+    margin-bottom:0.3rem;
     h2{
-      margin-left: 20px;
+      margin-left: 0.2rem;
     }
   }
   h2{
-    font-size: 26px;
+    font-size:0.26rem;
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
-    padding: 10px 16px;
+    padding: 0.1rem 0.16rem;
   }
   .listcontent{
     h3{
       font-weight: normal;
+      font-size: 0.18rem;
     }
     position: absolute;
-    bottom: 20px;
-    left:30px;
+    bottom: 0.2rem;
+    left:0.3rem;
     color: white;
+    p{
+      font-size: 0.18rem;
+    }
   }
 }
+
 </style>

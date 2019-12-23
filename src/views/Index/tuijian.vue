@@ -5,8 +5,8 @@
          <img :src="data.main_image" @click="handeclick(data.di)">
          <div class="bannercontent">
            <h2>{{data.main_title}}</h2>
-           <span>{{data.sub_title}}</span>
-           <span>{{data.description}}</span>
+           <span class="sub_title">{{data.sub_title}}</span>
+           <span class="description">{{data.description}}</span>
          </div>
      </div>
     </swiper>
@@ -61,14 +61,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .bannerbox{
-      position: relative;
+      position: absolute;
         top: 0;
         width: 100%;
-        top:-96px;
+
     }
   .bannercontent{
     h2{
-      font-size: 0.3rem;
+      font-size: 0.28rem;
     }
     height: 0.1rem;
     display: flex;
@@ -77,14 +77,14 @@ export default {
     text-align: center;
     color: #fff;
     position: absolute;
-    bottom: 0.5rem;
+    bottom: 0.64rem;
     left: 50%;
     transform: translate(-50%);
-    span{
-          font-size: 0.7rem;
+    .sub_title{
+      font-size: 0.16rem;
     }
-    span:nth-of-type(2){
-          font-size: 0.37rem;
+    .description{
+      font-size: 0.16rem;
     }
   }
    img{
@@ -110,14 +110,14 @@ export default {
   .listcontent{
     h3{
       font-weight: normal;
-            font-size: 0.37rem;
+      font-size: 0.18rem;
     }
     position: absolute;
     bottom: 0.2rem;
     left:0.3rem;
     color: white;
     p{
-      font-size: 0.37rem;
+      font-size: 0.18rem;
     }
   }
 }

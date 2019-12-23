@@ -61,7 +61,7 @@ const routes = [
     component: Comingsoon
   },
   {
-    path: '/detail',
+    path: '/detail/:glsCode',
     component: Detail
   },
   {

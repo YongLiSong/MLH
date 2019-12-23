@@ -22,6 +22,7 @@
             flex: 1;
             box-sizing: border-box;
             font-size: 0.16rem;
+            color: #fff;
             &:nth-of-type(2){
                 flex: 5;
             }

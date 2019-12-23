@@ -2,6 +2,7 @@
     <div >
         <seatch></seatch>
         <tabbar></tabbar>
+        <div class="ntn_height"></div>
         <router-view></router-view>
     </div>
 </template>
@@ -18,12 +19,7 @@ export default {
     }
   },
   mounted () {
-    // console.log(this.$store.state)
-    // Axios({
-    //   url: 'http://www.mei.com/appapi/home/mktBannerApp/v3?silo_id=2013000100000000008&platform_code=PLATEFORM_H5'
-    // }).then(res => {
-    //   this.bannerslist = res.data.banners
-    // })
+
   },
   components: {
     tabbar,
@@ -32,30 +28,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-   .listbox{
-  ul{
-    margin-bottom:0.3rem;
-    h2{
-      margin-left:0.2rem;
-    }
+  .ntn_height{
+    height: 4.51rem
   }
-  h2{
-    font-size: 0.26rem;
-    font-weight: normal;
-  }
-  li{
-    box-sizing: border-box;
-    position: relative;
-    padding: 0.1rem 0.16rem;
-  }
-  .listcontent{
-    h3{
-      font-weight: normal;
-    }
-    position: absolute;
-    bottom: 0.2rem;
-    left:0.3rem;
-    color: white;
-  }
-   }
 </style>

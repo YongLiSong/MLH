@@ -3,7 +3,7 @@
        <!-- List--{{this.$route.params.eventId}} -->
         <div>{{meiInfo.eventName}}</div>
         <ul>
-            <li v-for="item in meiInfo.products" :key="item.productId">
+            <li v-for="item in meiInfo.products" :key="item.productId" @click="handlclick(item.glsCode)">
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>
@@ -31,6 +31,12 @@ export default {
       console.log(res.data)
       this.meiInfo = res.data
     })
+  },
+  methods: {
+    handlclick (id) {
+      // console.log(this.$router)
+      this.$router.push(`/Detail/${id}`)
+    }
   }
 }
 </script>
@@ -60,6 +66,7 @@ export default {
       }
       .price{
         color: #e14343;
+        margin-right: 0.09rem;
       }
       .marketPrice{
         color: #d0d0d0;
