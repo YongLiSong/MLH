@@ -10,6 +10,15 @@
          </div>
      </div>
     </swiper>
+    <div class="newday" v-if="newday.length">
+      <ul v-for="(newdata,index) in newday" :key="index" >
+        <h3>{{newdata.main_title}}<span>{{newdata.sub_title}}</span></h3>
+        <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa">
+          <img :src="newlistdata.picUrl">
+          <span>{{newlistdata.tag}}</span>
+        </li>
+      </ul>
+    </div>
     <div v-if="list.length" class="listbox">
        <ul v-for='data in list' :key="data.name">
         <h2>{{data.name}}</h2>
@@ -33,7 +42,8 @@ export default {
   data () {
     return {
       bannerlist: [],
-      list: []
+      list: [],
+      newday: []
     }
   },
   mounted () {
@@ -46,6 +56,12 @@ export default {
       url: 'http://www.meihigo.hk/appapi/home/eventForH5?params=%7B%7D&timestamp=1576985820987&summary=fc07b5d4d9c9c1d1131594ebc6906c57&platform_code=H5'
     }).then(res => {
       this.list = res.data.lists
+    })
+    Axios({
+      url: 'http://www.meihigo.hk/appapi/ninenew/operational/v1?credential='
+    }).then(res => {
+      this.newday = res.data.show2
+      console.log(this.newday)
     })
   },
   components: {
