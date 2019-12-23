@@ -29,6 +29,6 @@ export default {
 </script>
 <style lang="scss" scoped>
   .ntn_height{
-    height: 4.51rem
+    height: 3.6rem;
   }
 </style>
