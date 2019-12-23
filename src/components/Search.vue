@@ -13,22 +13,23 @@
     ul{
         position: relative;
         z-index: 100;
-        height: 50px;
+        height: 0.5rem;
         flex-flow: row;
         li{
-            padding-top: 5px;
+            padding-top: 0.05rem;
             text-align: center;
-            line-height: 50px;
+            line-height: 0.5rem;
             flex: 1;
             box-sizing: border-box;
+            font-size: 0.16rem;
             &:nth-of-type(2){
                 flex: 5;
             }
             input{
-                font-size: 16px;
+                font-size: 0.16rem;
                 color:#fff ;
                 text-align: center;
-                height: 40px;
+                height: 0.4rem;
                 width: 100%;
                 border: none;
                 background: rgba($color: #fff, $alpha: 0.2);

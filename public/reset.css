@@ -1,0 +1,60 @@
+@charset "UTF-8";
+blockquote,html,body,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,img,input,button,code,
+fieldset,legend,figure,figcaption,blockquote,form,textarea,pre,span{
+    margin: 0; padding: 0;
+}
+
+html{
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+body {
+    font-family: "Microsoft YaHei";
+    font-size: 14px; 
+}
+
+ul,ol,li{
+    list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+b,strong{
+    font-weight: normal;
+}
+
+em,i{
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    display: block;
+    border: none;
+}
+
+/*取消输入框的蓝色边框线 */
+input{outline: none;}  
+
+/*解决高度塌陷*/
+.clear:after{
+    content: ".";
+    height: 0;
+    overflow: hidden;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+/*解决IE的兼容问题*/
+.clearfix{
+    *zoom:1;
+}
+

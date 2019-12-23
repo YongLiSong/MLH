@@ -68,18 +68,24 @@ export default {
     }
   .bannercontent{
     h2{
-      font-size: 30px;
+      font-size: 0.3rem;
     }
-    height: 100px;
+    height: 0.1rem;
     display: flex;
     flex-flow: column;
     justify-content: space-around;
     text-align: center;
     color: #fff;
     position: absolute;
-    bottom: 50px;
+    bottom: 0.5rem;
     left: 50%;
-    transform: translate(-50%)
+    transform: translate(-50%);
+    span{
+          font-size: 0.7rem;
+    }
+    span:nth-of-type(2){
+          font-size: 0.37rem;
+    }
   }
    img{
         width: 100%;
@@ -87,28 +93,32 @@ export default {
 
 .listbox{
   ul{
-    margin-bottom:30px;
+    margin-bottom:0.3rem;
     h2{
-      margin-left: 20px;
+      margin-left: 0.2rem;
     }
   }
   h2{
-    font-size: 26px;
+    font-size:0.26rem;
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
-    padding: 10px 16px;
+    padding: 0.1rem 0.16rem;
   }
   .listcontent{
     h3{
       font-weight: normal;
+            font-size: 0.37rem;
     }
     position: absolute;
-    bottom: 20px;
-    left:30px;
+    bottom: 0.2rem;
+    left:0.3rem;
     color: white;
+    p{
+      font-size: 0.37rem;
+    }
   }
 }
 
