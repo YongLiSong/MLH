@@ -1,9 +1,18 @@
 <template>
     <div v-if="meiInfo">
+<<<<<<< HEAD
        <!-- List--{{this.$route.params.eventId}} -->
         <div>{{meiInfo.eventName}}</div>
         <ul>
             <li v-for="item in meiInfo.products" :key="item.productId" @click="handlclick(item.glsCode)">
+=======
+        <div>{{meiInfo.eventName}}</div>
+        <ul v-infinite-scroll="loadMore"
+            infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10">
+            <li v-for="item in meiInfoList" :key="item.productId">
+                <p>{{item.productName}}</p>
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>
@@ -17,10 +26,13 @@
 
 <script>
 import Axios from 'axios'
+
 export default {
   data () {
     return {
-      meiInfo: null
+      meiInfo: null,
+      meiInfoList: [],
+      num: 1
     }
   },
   mounted () {
@@ -30,18 +42,37 @@ export default {
     }).then(res => {
       console.log(res.data)
       this.meiInfo = res.data
+      this.meiInfoList = res.data.products
+      console.log(this.meiInfoList)
     })
   },
   methods: {
+<<<<<<< HEAD
     handlclick (id) {
       // console.log(this.$router)
       this.$router.push(`/Detail/${id}`)
+=======
+    loadMore () {
+      this.num++
+      this.loading = true
+      if (this.num > this.meiInfo.totalPages) {
+        return
+      }
+      Axios({
+        url: `http://www.meihigo.hk/appapi/event/product/v3?pageIndex=${this.num}&categoryId=${this.$route.params.eventId}&key=&sort=&timestamp=1577068190462&summary=fa0dddb80e97b05bf029ae6d9a4177a3&platform_code=H5`
+      }).then(res => {
+        console.log(this.meiInfoList)
+        this.meiInfoList = [...this.meiInfoList, ...res.data.products]
+      })
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
+<<<<<<< HEAD
   ul{
     display: flex;
     justify-content: space-around;
@@ -76,6 +107,10 @@ export default {
         color: #777777;
         float: right;
       }
+=======
+    img{
+        width: 1.00rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
   }
 </style>

@@ -3,7 +3,7 @@
     <div>
     <div class="bannerbox">
       <div class="swiper-slide">
-        <img src="https://img.alicdn.com/tfs/TB1WQ91o4z1gK0jSZSgXXavwpXa-750-900.jpg" @click="handeclick(data.di)" />
+        <img src="https://img.alicdn.com/tfs/TB1WQ91o4z1gK0jSZSgXXa0.vwrema-750-900.jpg" @click="handeclick(data.di)" />
       </div>
     </div>
     <div v-if="list.length" class="listbox">
@@ -33,6 +33,11 @@ export default {
       list: []
     }
   },
+  methods: {
+    golist (id) {
+      this.$router.push(`/list/${id}`)
+    }
+  },
   mounted () {
     Axios({
       url: 'http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=women&pageIndex=1&timestamp=1576997710438&summary=0ca8d473177520a42ea581d9d7f2fde6&platform_code=H5'
@@ -48,6 +53,7 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
+<<<<<<< HEAD
 
     }
   .bannercontent{
@@ -66,6 +72,9 @@ export default {
     transform: translate(-50%);
     .sub_title{
       font-size: 0.16rem;
+=======
+        top:-0.96rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
     .description{
       font-size: 0.16rem;
@@ -77,6 +86,7 @@ export default {
 
 .listbox{
   ul{
+<<<<<<< HEAD
     margin-bottom:0.3rem;
     h2{
       margin-left: 0.2rem;
@@ -84,12 +94,25 @@ export default {
   }
   h2{
     font-size:0.26rem;
+=======
+    margin-bottom:0.30rem;
+    h2{
+      margin-left: 0.20rem;
+    }
+  }
+  h2{
+    font-size: 0.26rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
+<<<<<<< HEAD
     padding: 0.1rem 0.16rem;
+=======
+    padding: 0.10rem 0.16rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
   }
   .listcontent{
     h3{
@@ -97,8 +120,13 @@ export default {
       font-size: 0.18rem;
     }
     position: absolute;
+<<<<<<< HEAD
     bottom: 0.2rem;
     left:0.3rem;
+=======
+    bottom: 0.20rem;
+    left:0.30rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     color: white;
     p{
       font-size: 0.18rem;

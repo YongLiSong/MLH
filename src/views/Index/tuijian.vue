@@ -10,6 +10,15 @@
          </div>
      </div>
     </swiper>
+    <div class="newday" v-if="newday.length">
+      <ul v-for="(newdata,index) in newday" :key="index" >
+        <h3>{{newdata.main_title}}<span>{{newdata.sub_title}}</span></h3>
+        <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa">
+          <img :src="newlistdata.picUrl">
+          <span>{{newlistdata.tag}}</span>
+        </li>
+      </ul>
+    </div>
     <div v-if="list.length" class="listbox">
        <ul v-for='data in list' :key="data.name">
         <h2>{{data.name}}</h2>
@@ -33,7 +42,8 @@ export default {
   data () {
     return {
       bannerlist: [],
-      list: []
+      list: [],
+      newday: []
     }
   },
   mounted () {
@@ -46,6 +56,12 @@ export default {
       url: 'http://www.meihigo.hk/appapi/home/eventForH5?params=%7B%7D&timestamp=1576985820987&summary=fc07b5d4d9c9c1d1131594ebc6906c57&platform_code=H5'
     }).then(res => {
       this.list = res.data.lists
+    })
+    Axios({
+      url: 'http://www.meihigo.hk/appapi/ninenew/operational/v1?credential='
+    }).then(res => {
+      this.newday = res.data.show2
+      console.log(this.newday)
     })
   },
   methods: {
@@ -64,6 +80,7 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
+<<<<<<< HEAD
 
     }
   .bannercontent{
@@ -71,13 +88,26 @@ export default {
       font-size: 0.28rem;
     }
     height: 0.1rem;
+=======
+        top:-0.96rem;
+    }
+  .bannercontent{
+    h2{
+      font-size: 0.30rem;
+    }
+    height: 1.00rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     display: flex;
     flex-flow: column;
     justify-content: space-around;
     text-align: center;
     color: #fff;
     position: absolute;
+<<<<<<< HEAD
     bottom: 0.64rem;
+=======
+    bottom: 0.50rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     left: 50%;
     transform: translate(-50%);
     .sub_title{
@@ -93,6 +123,7 @@ export default {
 
 .listbox{
   ul{
+<<<<<<< HEAD
     margin-bottom:0.3rem;
     h2{
       margin-left: 0.2rem;
@@ -100,12 +131,25 @@ export default {
   }
   h2{
     font-size:0.26rem;
+=======
+    margin-bottom:0.30rem;
+    h2{
+      margin-left: 0.20rem;
+    }
+  }
+  h2{
+    font-size: 0.26rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
+<<<<<<< HEAD
     padding: 0.1rem 0.16rem;
+=======
+    padding: 0.10rem 0.16rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
   }
   .listcontent{
     h3{
@@ -113,8 +157,13 @@ export default {
       font-size: 0.18rem;
     }
     position: absolute;
+<<<<<<< HEAD
     bottom: 0.2rem;
     left:0.3rem;
+=======
+    bottom: 0.20rem;
+    left:0.30rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     color: white;
     p{
       font-size: 0.18rem;

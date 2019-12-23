@@ -37,6 +37,11 @@ export default {
       list: []
     }
   },
+  methods: {
+    golist (id) {
+      this.$router.push(`/list/${id}`)
+    }
+  },
   mounted () {
     Axios({
       url: 'http://www.meihigo.hk/appapi/home/mktBannerApp/v3?silo_id=2013000100000000004&platform_code=PLATEFORM_H5'
@@ -57,6 +62,7 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
+<<<<<<< HEAD
 
     }
   .bannercontent{
@@ -64,13 +70,26 @@ export default {
       font-size: 0.28rem;
     }
     height: 0.1rem;
+=======
+        top:-0.96rem;
+    }
+  .bannercontent{
+    h2{
+      font-size: 0.30rem;
+    }
+    height: 1.00rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     display: flex;
     flex-flow: column;
     justify-content: space-around;
     text-align: center;
     color: #fff;
     position: absolute;
+<<<<<<< HEAD
     bottom: 0.64rem;
+=======
+    bottom: 0.50rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     left: 50%;
     transform: translate(-50%);
     .sub_title{
@@ -86,6 +105,7 @@ export default {
 
 .listbox{
   ul{
+<<<<<<< HEAD
     margin-bottom:0.3rem;
     h2{
       margin-left: 0.2rem;
@@ -93,12 +113,25 @@ export default {
   }
   h2{
     font-size:0.26rem;
+=======
+    margin-bottom:0.30rem;
+    h2{
+      margin-left: 0.20rem;
+    }
+  }
+  h2{
+    font-size: v26rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
+<<<<<<< HEAD
     padding: 0.1rem 0.16rem;
+=======
+    padding: 0.10rem 0.16rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
   }
   .listcontent{
     h3{
@@ -106,8 +139,13 @@ export default {
       font-size: 0.18rem;
     }
     position: absolute;
+<<<<<<< HEAD
     bottom: 0.2rem;
     left:0.3rem;
+=======
+    bottom: 0.20rem;
+    left:0.30rem;
+>>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     color: white;
     p{
       font-size: 0.18rem;
