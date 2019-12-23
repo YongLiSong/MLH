@@ -64,6 +64,12 @@ export default {
       console.log(this.newday)
     })
   },
+  methods: {
+    golist (id) {
+      // console.log(this.$router)
+      this.$router.push(`/List/${id}`)
+    }
+  },
   components: {
     swiper
   }
