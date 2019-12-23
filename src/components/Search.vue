@@ -13,20 +13,12 @@
     ul{
         position: relative;
         z-index: 100;
-<<<<<<< HEAD
         height: 0.5rem;
         flex-flow: row;
         li{
             padding-top: 0.05rem;
             text-align: center;
             line-height: 0.5rem;
-=======
-        height: 0.50rem;
-        flex-flow: row;
-        li{
-            text-align: center;
-            line-height: 0.50rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
             flex: 1;
             box-sizing: border-box;
             font-size: 0.16rem;
@@ -38,11 +30,7 @@
                 font-size: 0.16rem;
                 color:#fff ;
                 text-align: center;
-<<<<<<< HEAD
                 height: 0.4rem;
-=======
-                height: 0.40rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
                 width: 100%;
                 border: none;
                 background: rgba($color: #fff, $alpha: 0.2);

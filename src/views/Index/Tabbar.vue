@@ -101,23 +101,12 @@ div{
           }
           }
         color: #fff;
-<<<<<<< HEAD
         margin-top: 0.1rem;
         width: 100%;
         padding-left:0.1rem;
         li{
           margin-right: 0.2rem;
             float: left;
-=======
-        margin-top: 0.10rem;
-        width: 110%;
-        padding-left:0.10rem;
-        li{
-
-          margin-right: 0.20rem;
-            float: left;
-            line-height: 0.36rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
             font-size: 0.16rem;
             text-align: center;
         }

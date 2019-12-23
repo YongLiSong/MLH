@@ -51,7 +51,6 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
-<<<<<<< HEAD
 
     }
   .bannercontent{
@@ -70,9 +69,6 @@ export default {
     transform: translate(-50%);
     .sub_title{
       font-size: 0.16rem;
-=======
-        top:-0.96rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
     .description{
       font-size: 0.16rem;
@@ -84,7 +80,6 @@ export default {
 
 .listbox{
   ul{
-<<<<<<< HEAD
     margin-bottom:0.3rem;
     h2{
       margin-left: 0.2rem;
@@ -92,25 +87,12 @@ export default {
   }
   h2{
     font-size:0.26rem;
-=======
-    margin-bottom:0.30rem;
-    h2{
-      margin-left: 0.20rem;
-    }
-  }
-  h2{
-    font-size: 0.26rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     font-weight: normal;
   }
   li{
     box-sizing: border-box;
     position: relative;
-<<<<<<< HEAD
     padding: 0.1rem 0.16rem;
-=======
-    padding: 0.10rem 0.16rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
   }
   .listcontent{
     h3{
@@ -118,13 +100,8 @@ export default {
       font-size: 0.18rem;
     }
     position: absolute;
-<<<<<<< HEAD
     bottom: 0.2rem;
     left:0.3rem;
-=======
-    bottom: 0.20rem;
-    left:0.30rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     color: white;
     p{
       font-size: 0.18rem;

@@ -1,18 +1,13 @@
 <template>
     <div v-if="meiInfo">
-<<<<<<< HEAD
-       <!-- List--{{this.$route.params.eventId}} -->
-        <div>{{meiInfo.eventName}}</div>
-        <ul>
-            <li v-for="item in meiInfo.products" :key="item.productId" @click="handlclick(item.glsCode)">
-=======
-        <div>{{meiInfo.eventName}}</div>
+         <div class="list_top">
+          <i class="iconfont icon-icon-test59"></i>
+          <p>{{meiInfo.eventName}}</p>
+        </div>
         <ul v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
-            <li v-for="item in meiInfoList" :key="item.productId">
-                <p>{{item.productName}}</p>
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
+            <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.glsCode)">
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>
@@ -47,11 +42,10 @@ export default {
     })
   },
   methods: {
-<<<<<<< HEAD
     handlclick (id) {
       // console.log(this.$router)
       this.$router.push(`/Detail/${id}`)
-=======
+    },
     loadMore () {
       this.num++
       this.loading = true
@@ -64,7 +58,6 @@ export default {
         console.log(this.meiInfoList)
         this.meiInfoList = [...this.meiInfoList, ...res.data.products]
       })
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
   }
 }
@@ -72,7 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
   ul{
     display: flex;
     justify-content: space-around;
@@ -107,10 +99,6 @@ export default {
         color: #777777;
         float: right;
       }
-=======
-    img{
-        width: 1.00rem;
->>>>>>> 69bc85e7dab323d14aa69c10dac3480caaec1aaf
     }
   }
 </style>
