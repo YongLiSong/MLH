@@ -37,6 +37,11 @@ export default {
       list: []
     }
   },
+  methods: {
+    golist (id) {
+      this.$router.push(`/list/${id}`)
+    }
+  },
   mounted () {
     Axios({
       url: 'http://www.meihigo.hk/appapi/home/mktBannerApp/v3?silo_id=2013000100000000004&platform_code=PLATEFORM_H5'

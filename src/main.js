@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Router from 'vue-router'
+import { InfiniteScroll } from 'mint-ui'
 
+Vue.use(InfiniteScroll)
 Vue.config.productionTip = false
 
 // 解决router模块的兼容性问题

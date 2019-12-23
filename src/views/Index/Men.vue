@@ -31,6 +31,11 @@ export default {
       list: []
     }
   },
+  methods: {
+    golist (id) {
+      this.$router.push(`/list/${id}`)
+    }
+  },
   mounted () {
     Axios({
       url: 'http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=men&pageIndex=1&timestamp=1576997395324&summary=04bd48926970714b89729e7bb3f5e6dd&platform_code=H5'
