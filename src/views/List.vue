@@ -65,6 +65,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list_top{
+    width: 100%;
+    height: 0.42rem;
+    background: #fff;
+    display: flex;
+    p{
+      margin: 0 auto;
+      font-weight: bold;
+      line-height: 0.42rem;
+      font-size: 0.2rem;
+      color: #2a2a2a;
+    }
+  }
   ul{
     display: flex;
     justify-content: space-around;
