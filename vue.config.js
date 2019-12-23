@@ -6,8 +6,12 @@ module.exports = {
     },
     proxy: {
       '/appapi': {
-        target: 'http://www.meihigo.hk/',
+        target: 'http://www.mei.com',
+        // ws: true,
         changeOrigin: true
+      },
+      '/foo': {
+        target: '<other_url>'
       }
     }
   }
