@@ -7,7 +7,7 @@
         <ul v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
-            <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.glsCode)">
+            <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.productId)">
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>

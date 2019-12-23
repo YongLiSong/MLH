@@ -3,6 +3,12 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: false
+    },
+    proxy: {
+      '/appapi': {
+        target: 'http://www.meihigo.hk/',
+        changeOrigin: true
+      }
     }
   }
 }
