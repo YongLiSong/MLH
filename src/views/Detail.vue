@@ -3,7 +3,7 @@
       <listnav>
         <div class="detail_title">
             <span class="brand">{{detailInfo.brand}}</span>
-            <span class="price">{{detailInfo.price}}</span>
+            <span class="price">¥{{detailInfo.price}}</span>
         </div>
       </listnav>
       <swiper v-if="detailBanner.length"  class="bannerbox">
@@ -12,7 +12,7 @@
          </div>
       </swiper>
       <div class="detail_menu">
-        <h3>{{ detailInfo.name }}</h3>
+        <h3 class="myname">{{ detailInfo.name }}</h3>
         <span class="marketPrice">{{detailInfo.marketPrice}}</span>
         <span class="price">￥{{detailInfo.price}}</span>
         <span class="discount">{{detailInfo.discount}}</span>
@@ -66,10 +66,10 @@
         <transition name="kerwinbounce">
         <div class="toincart" v-show="isShow" ref="mycarts">
           <div class="toincart_img"  v-for="(items,index) in detailInfo.images.slice(0,1)" :key="index">
-            <img :src="items.bigImgUrl" style="width:0.76rem;">
+            <img :src="items.bigImgUrl" style="width:0.76rem;" ref="myimg">
           </div>
           <i class="iconfont icon-icon-test44" @click="nonemun"></i>
-          <span>￥</span>
+          <span class="price_unit">￥</span>
           <h2 ref="myprice">{{detailInfo.price}}</h2>
           <ul class="color">
             <li v-for="(dist,index) in detailParameter.slice(5,6)" :key="index">
@@ -89,7 +89,7 @@
             <button class="add" @click="add">+</button>
           </div>
           <div class="add_buy">
-            <button class="addCart1" @click="addCart">加入购物车</button>
+            <button class="addCart1" @click="addCart()">加入购物车</button>
             <button class="buynow1">立即购买</button>
           </div>
         </div>
@@ -104,6 +104,8 @@
 import Axios from 'axios'
 import listnav from '@/components/Listnav'
 import swiper from '@/components/Swiper'
+import $ from 'jquery'
+import { Toast } from 'mint-ui'
 export default {
   data () {
     return {
@@ -129,7 +131,7 @@ export default {
     Axios({
       url: `http://www.mei.com/appapi/product/detail/v3?categoryId=2120005100000003429&productId=${this.$route.params.glsCode}&platform_code=H5&timestamp=1577067298102&summary=b558c216920bbc762468d976457e41f3`
     }).then(res => {
-      console.log(res.data.infos)
+      // console.log(res.data.infos)
       this.detailInfo = res.data.infos
       this.detailBanner = this.detailInfo.images
       this.detailParameter = this.detailInfo.description.attributesList
@@ -139,25 +141,76 @@ export default {
   },
   methods: {
     addCart: function () {
-      // localStorage.setItem(myprice, myvalue, mysize, mynum)
-      console.log(Number(this.$refs.myprice.innerHTML))
-      console.log(this.$refs.myvalue[0].innerHTML)
-      console.log(this.$refs.mysize.innerHTML)
-      console.log(Number(this.$refs.mynum.innerHTML))
-      // var myprice = Number(this.$refs.myprice.innerHTML)
-      // var myvalue = this.$refs.myvalue[0].innerHTML
-      // var mysize = this.$refs.mysize.innerHTML
-      // var mynum = Number(this.$refs.mynum.innerHTML)
+      // console.log(Number(this.$refs.myprice.innerHTML))
+      // console.log(this.$refs.mysize.filter('size_choose').html())
+      // console.log($('.toincart').find('.size_choose').text())
+      // console.log(Number(this.$refs.mynum.innerHTML))
+      // console.log(this.$refs.myimg[0].src)
+      var myname = $('.detail_menu').find('.myname').text() // name -- 商品名
+      var myprice = Number(this.$refs.myprice.innerHTML) // price -- 价格
+      var mysize = $('.toincart').find('.size_choose').text() // size -- 尺码
+      var myvalue = $('.toincart').find('.value').text() // value -- 已选
+      var myimg = this.$refs.myimg[0].src // imgs -- 图片
+      var mynum = Number(this.$refs.mynum.innerHTML) // num -- 数量
+
+      let valueObj = {
+        name: myname,
+        price: myprice,
+        value: myvalue,
+        size: mysize,
+        myimg: myimg,
+        num: mynum
+      }
+
+      let result = this.getCartStorage() || []
+      let flag = true
+      let nums = -1
+      // console.log(result.length)
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].name === valueObj.name && result[i].size === valueObj.size) {
+          flag = false
+          nums = i
+        }
+      }
+
+      if (flag) {
+        result.push(valueObj)
+      } else {
+        result[nums].num += valueObj.num
+      }
+
+      this.setCartStorage(result)
+      // 添加购物车提示框
+      Toast({
+        message: '添加成功',
+        position: 'center',
+        duration: 1000
+      })
+    },
+    getCartStorage () {
+      return JSON.parse(localStorage.getItem('cart'))
+    },
+    setCartStorage (result) {
+      return localStorage.setItem('cart', JSON.stringify(result))
     },
     showmun () {
       this.isShow = !this.isShow
+      // 购物车弹出提示框
+      Toast({
+        message: '请选择尺码和数量',
+        position: 'center',
+        duration: 1000
+      })
     },
+    // 购物车关闭按钮
     nonemun () {
       this.isShow = !this.isShow
     },
+    // 加
     add () {
       this.num++
     },
+    // 减
     min () {
       this.num--
       if (this.num < 1) {
@@ -166,10 +219,8 @@ export default {
     },
     handlclick (id) {
       this.activeClass = id
-      // if(this.activeClass === 'size_choose'){
-      //   console.log(this.activeClass)
-      // }
     },
+    // 倒计时设置方法
     timeFormat (param) {
       return param < 10 ? '0' + param : param
     },
@@ -495,11 +546,16 @@ export default {
       top: 0.15rem;
       color: #828282;
     }
+    .price_unit{
+      position: absolute;
+      left: 1.11rem;
+      top: 0.32rem;
+    }
     h2{
       font-size: 0.16rem;
       color: #000;
       position: absolute;
-      left: 1.11rem;
+      left: 1.27rem;
       top: 0.32rem;
       font-weight: bold;
     }
@@ -508,6 +564,12 @@ export default {
       left: 1.11rem;
       top: 0.55rem;
       color: #666666;
+      span{
+        float: left;
+      }
+      p.value{
+        width: 1.9rem
+      }
     }
   .size{
       width: 2.85rem;
@@ -557,7 +619,7 @@ export default {
       top: 1.97rem;
       width: 3.47rem;
       i{
-        margin-right: 2.1rem;
+        margin-right: 2.0rem;
       }
       button{
         width: 0.3rem;

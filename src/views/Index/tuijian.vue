@@ -2,7 +2,7 @@
   <div>
     <swiper v-if="bannerlist.length" class="bannerbox">
      <div class="swiper-slide" v-for="data in bannerlist" :key="data.di" >
-         <img :src="data.main_image" @click="handeclick(data.di)">
+         <img :src="data.main_image">
          <div class="bannercontent">
            <h2>{{data.main_title}}</h2>
            <span class="sub_title">{{data.sub_title}}</span>
@@ -12,9 +12,9 @@
     </swiper>
     <div class="newday" v-if="newday.length">
       <!-- 每日新栏 -->
-      <ul v-for="(newdata,index) in newday" :key="index" >
+      <ul v-for="(newdata,index) in newday" :key="index" @click="gonewgoods()">
         <h3>{{newdata.main_title}}<span>{{newdata.sub_title}}</span></h3>
-        <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa">
+        <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa" >
           <img :src="newlistdata.picUrl">
           <span>{{newlistdata.tag}}</span>
         </li>
@@ -62,10 +62,13 @@ export default {
       url: 'http://www.meihigo.hk/appapi/ninenew/operational/v1?credential='
     }).then(res => {
       this.newday = res.data.show2
-      console.log(this.newday)
+      // console.log(this.newday)
     })
   },
   methods: {
+    gonewgoods () {
+      this.$router.push('/newgoods')
+    },
     golist (id) {
       // console.log(this.$router)
       this.$router.push(`/List/${id}`)
@@ -77,6 +80,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .bannerbox{
       position: absolute;
         top: 0;
@@ -115,7 +119,7 @@ export default {
     }
   }
   h2{
-    font-size:0.26rem;
+    font-size:0.2rem;
     font-weight: normal;
   }
   li{
@@ -143,6 +147,7 @@ export default {
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
+  padding-left: 0.1rem;
   ul{
     padding: 0.1rem;
     box-sizing: border-box;
@@ -155,8 +160,9 @@ export default {
     &:after{
         content: "";
         display: block;
-        height: 100%;
-        width: 100%;
+        height: 1.6rem;
+        width: 1.7rem;
+        box-sizing: border-box;
         position: absolute;
         top: 0;
         left: 0;

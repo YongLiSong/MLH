@@ -41,8 +41,10 @@ img{
     border: none;
 }
 
-/*取消输入框的蓝色边框线 */
-input{outline: none;}  
+/*取消输入框和按钮的蓝色边框线 */
+input,button{
+    outline: none;
+}  
 
 /*解决高度塌陷*/
 .clear:after{

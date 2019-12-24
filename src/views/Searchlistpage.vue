@@ -1,12 +1,17 @@
 <template>
-    <div v-if="meiInfo">
-         <div class="list_top">
-          <i class="iconfont icon-icon-test59"></i>
-          <p>{{meiInfo.eventName}}</p>
+
+    <div >
+      <listnav>
+            <p>{{$route.params.searchid}}</p>
+      </listnav>
+       <div class="zhao" v-if="isShow">
+              查询无结果
         </div>
         <ul v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
-            infinite-scroll-distance="10">
+            infinite-scroll-distance="10"
+             v-if="meiInfoList.length">
+
             <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.productId)">
                 <img :src="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
@@ -18,34 +23,33 @@
         </ul>
     </div>
 </template>
-
 <script>
 import Axios from 'axios'
+import listnav from '@/components/Listnav'
 
 export default {
   data () {
     return {
       meiInfo: null,
       meiInfoList: [],
-      num: 1
+      num: 1,
+      isShow: false
     }
   },
   mounted () {
-    // console.log(this.$route.params.eventId)
     Axios({
-      url: `http://www.meihigo.hk/appapi/search/searchKey/v3?pageIndex=1&q=${this.$route.params.goodsname}&sort=&key=&brandNameEn=${this.$route.params.goodsname}&brandNameZh=&type=brand`
+      url: `http://www.mei.com/appapi/search/searchKey/v3?pageIndex=1&q=${this.$route.params.searchid}&sort=&key=&searchKeyWord=${this.$route.params.searchid}`
     }).then(res => {
-      console.log(res.data)
-      this.meiInfo = res.data
       this.meiInfoList = res.data.products
-      console.log(this.meiInfoList)
+      this.meiInfo = res.data
+      if (res.data.products.length === 0) {
+        this.isShow = true
+        console.log(this.isShow)
+      }
     })
+    console.log(this.$route.params.searchid)
   },
   methods: {
-    handlclick (id) {
-      // console.log(this.$router)
-      this.$router.push(`/Detail/${id}`)
-    },
     loadMore () {
       this.num++
       this.loading = true
@@ -53,17 +57,18 @@ export default {
         return
       }
       Axios({
-        url: `http://www.meihigo.hk/appapi/search/searchKey/v3?pageIndex=${this.num}&q=${this.$route.params.goodsname}&sort=&key=&brandNameEn=${this.$route.params.goodsname}&brandNameZh=&type=brand`
+        url: `http://www.mei.com/appapi/search/searchKey/v3?pageIndex=${this.num}&q=${this.$route.params.searchid}&sort=&key=&searchKeyWord=${this.$route.params.searchid}`
       }).then(res => {
-        console.log(this.meiInfoList)
+        // console.log(this.meiInfoList)
         this.meiInfoList = [...this.meiInfoList, ...res.data.products]
       })
     }
+  },
+  components: {
+    listnav
   }
 }
-
 </script>
-
 <style lang="scss" scoped>
 .list_top{
     width: 100%;
@@ -113,5 +118,9 @@ export default {
         float: right;
       }
     }
+  }
+  .zhao{
+    position: relative;
+    z-index: 99999;
   }
 </style>
