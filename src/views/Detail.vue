@@ -105,6 +105,7 @@ import Axios from 'axios'
 import listnav from '@/components/Listnav'
 import swiper from '@/components/Swiper'
 import $ from 'jquery'
+import { Toast } from 'mint-ui'
 export default {
   data () {
     return {
@@ -172,6 +173,11 @@ export default {
     },
     showmun () {
       this.isShow = !this.isShow
+      Toast({
+        message: '请选择尺码',
+        position: 'center',
+        duration: 1000
+      })
     },
     nonemun () {
       this.isShow = !this.isShow
