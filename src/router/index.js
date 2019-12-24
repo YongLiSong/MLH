@@ -17,6 +17,7 @@ import Men from '@/views/Index/Men'
 import Women from '@/views/Index/Women'
 import Lifestyle from '@/views/Index/Lifestyle'
 import tuijian from '@/views/Index/tuijian'
+import Qingcang from '@/views/Qingcang'
 
 Vue.use(VueRouter)
 
@@ -86,6 +87,10 @@ const routes = [
   {
     path: '/searchlist/:goodsname',
     component: SearchList
+  },
+  {
+    path: '/qingcang',
+    component: Qingcang
   },
   {
     path: '/center',
