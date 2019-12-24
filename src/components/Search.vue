@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="searchHead">
-            <router-link to="/login" tag="li" style="font-size:0.2rem">登录</router-link>
+            <router-link to="/login" tag="li">登录</router-link>
             <li>
                 <input type="search" v-model="inputtext" @click="searchgoods()">
             </li>
@@ -51,7 +51,7 @@ export default {
       this.inputtext = ''
     },
     searchgoods () {
-      console.log('1112')
+      // console.log('1112')
       this.$store.commit('opensearch')
     },
     closeSearch () {
@@ -73,19 +73,20 @@ export default {
         z-index: 100;
         height: 0.5rem;
         flex-flow: row;
+        font-size: 0.14rem;
         li{
             padding-top: 0.05rem;
             text-align: center;
             line-height: 0.5rem;
             flex: 1;
             box-sizing: border-box;
-            font-size: 0.16rem;
+            font-size: 0.14rem;
             color: #fff;
             &:nth-of-type(2){
                 flex: 5;
             }
             input{
-                font-size: 0.16rem;
+                font-size: 0.14rem;
                 color:#fff ;
                 text-align: center;
                 height: 0.4rem;
@@ -119,9 +120,11 @@ export default {
         background:#fff;
         line-height: 0.4rem;
         text-align: center;
+        font-size: 0.14rem;
         .inputbox{
             flex: 5;
             display: flex;
+
         &>span{
             flex: 1;
         }

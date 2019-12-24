@@ -72,6 +72,7 @@ export default {
       width: 1.05rem;
       height: 1.55rem;
       background: #f5f5f5;
+      z-index: 500;
       li{
         height: 0.52rem;
         border-bottom: 1px solid #d6d6d6;
