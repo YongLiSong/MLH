@@ -140,6 +140,9 @@ export default {
 .newday{
   width: 100%;
   height: 1.8rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
   ul{
     padding: 0.1rem;
     box-sizing: border-box;
@@ -147,6 +150,7 @@ export default {
     width:45%;
     height: 1.5rem;
     margin-left: 3%;
+    height: 1.5rem;
     position: relative;
     &:after{
         content: "";

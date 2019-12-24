@@ -20,7 +20,7 @@ export default {
         method: 'post'
 
       }).then(res => {
-        window.set
+
       })
     }
   }
