@@ -1,13 +1,11 @@
 <template>
     <div>
         <ul id="isWhite" :class="{'isWhite' : isWhite}">
-            <!-- <li tag="li" to="">推荐</li> -->
             <router-link  v-for="data in routerlist" :key="data.id" tag="li" active-class="active" :to="data.path" @click.native="getid(data.id)">
               <span id="isBlack" :class="{'isBlack' : isBlack}">
                 {{data.name}}
               </span>
             </router-link>
-            <!-- <li tag="li" @click="heanderclick()" to="">即将上新</li> -->
         </ul>
     </div>
 </template>

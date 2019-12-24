@@ -141,22 +141,18 @@ export default {
   },
   methods: {
     addCart: function () {
-      // localStorage.setItem(myprice, myvalue, mysize, mynum)
       // console.log(Number(this.$refs.myprice.innerHTML))
       // console.log(this.$refs.mysize.filter('size_choose').html())
       // console.log($('.toincart').find('.size_choose').text())
       // console.log(Number(this.$refs.mynum.innerHTML))
       // console.log(this.$refs.myimg[0].src)
-      var myname = $('.detail_menu').find('.myname').text()
-      var myprice = Number(this.$refs.myprice.innerHTML)
-      var mysize = $('.toincart').find('.size_choose').text()
-      // var myvalue = this.$refs.myvalue[0].innerHTML
-      var myvalue = $('.toincart').find('.value').text()
-      // console.log(myvalue)
-      var myimg = this.$refs.myimg[0].src
-      var mynum = Number(this.$refs.mynum.innerHTML)
+      var myname = $('.detail_menu').find('.myname').text() // name -- 商品名
+      var myprice = Number(this.$refs.myprice.innerHTML) // price -- 价格
+      var mysize = $('.toincart').find('.size_choose').text() // size -- 尺码
+      var myvalue = $('.toincart').find('.value').text() // value -- 已选
+      var myimg = this.$refs.myimg[0].src // imgs -- 图片
+      var mynum = Number(this.$refs.mynum.innerHTML) // num -- 数量
 
-      // console.log(JSON.stringify(myprice))
       let valueObj = {
         name: myname,
         price: myprice,
@@ -168,29 +164,28 @@ export default {
 
       let result = this.getCartStorage() || []
       let flag = true
-      let rrr = -1
+      let nums = -1
       // console.log(result.length)
       for (var i = 0; i < result.length; i++) {
         if (result[i].name === valueObj.name && result[i].size === valueObj.size) {
           flag = false
-          rrr = i
-          // console.log(rrr)
+          nums = i
         }
       }
-      // console.log('result',result)
-      // console.log('flag',flag)
+
       if (flag) {
         result.push(valueObj)
-        // console.log(valueObj)
       } else {
-        // console.log('rrr',rrr)
-        result[rrr].num += valueObj.num
+        result[nums].num += valueObj.num
       }
 
       this.setCartStorage(result)
-      // cb();
-      // console.log(this.getCartStorage())
-      alert('添加成功')
+      // 添加购物车提示框
+      Toast({
+        message: '添加成功',
+        position: 'center',
+        duration: 1000
+      })
     },
     getCartStorage () {
       return JSON.parse(localStorage.getItem('cart'))
@@ -200,18 +195,22 @@ export default {
     },
     showmun () {
       this.isShow = !this.isShow
+      // 购物车弹出提示框
       Toast({
-        message: '请选择尺码',
+        message: '请选择尺码和数量',
         position: 'center',
         duration: 1000
       })
     },
+    // 购物车关闭按钮
     nonemun () {
       this.isShow = !this.isShow
     },
+    // 加
     add () {
       this.num++
     },
+    // 减
     min () {
       this.num--
       if (this.num < 1) {
@@ -220,10 +219,8 @@ export default {
     },
     handlclick (id) {
       this.activeClass = id
-      // if(this.activeClass === 'size_choose'){
-      //   console.log(this.activeClass)
-      // }
     },
+    // 倒计时设置方法
     timeFormat (param) {
       return param < 10 ? '0' + param : param
     },

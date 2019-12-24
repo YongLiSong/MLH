@@ -7,7 +7,7 @@
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
             <li v-for="item in meiInfoList" :key="item.productId" @click="handlclick(item.productId)">
-                <img :src="item.imageUrl" alt="">
+                <img v-lazy="item.imageUrl" alt="">
                 <h3>{{ item.brandName }}</h3>
                 <p>{{item.productName}}</p>
                 <span class="price">￥{{ item.price }}</span>
@@ -30,6 +30,7 @@
 import listnav from '@/components/Listnav'
 import Axios from 'axios'
 import { Indicator } from 'mint-ui'
+import Vue from 'vue'
 export default {
   data () {
     return {
@@ -56,7 +57,7 @@ export default {
       this.meiInfo = res.data
       this.productsTnfo = res.data.products
       this.meiInfoList = res.data.products
-      console.log(this.meiInfoList)
+      // console.log(this.meiInfoList)
       // console.log(this.productsTnfo)
       Indicator.close()
       window.addEventListener('scroll', this.scrollToTop)
@@ -94,7 +95,6 @@ export default {
         }
       }, 16)
     },
-
     // 为了计算距离顶部的高度，当高度大于60显示回顶部图标，小于60则隐藏
     scrollToTop () {
       const that = this
@@ -121,6 +121,11 @@ export default {
       width: 1.65rem;
       img{
         width: 100%;
+      }
+      img[lazy=loading] {
+        width: 40px;
+        height: 300px;
+        margin: auto;
       }
       h3{
         font-size: 0.12rem;

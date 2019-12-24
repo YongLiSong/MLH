@@ -62,7 +62,7 @@ export default {
       url: 'http://www.meihigo.hk/appapi/ninenew/operational/v1?credential='
     }).then(res => {
       this.newday = res.data.show2
-      console.log(this.newday)
+      // console.log(this.newday)
     })
   },
   methods: {
@@ -119,7 +119,7 @@ export default {
     }
   }
   h2{
-    font-size:0.26rem;
+    font-size:0.2rem;
     font-weight: normal;
   }
   li{
