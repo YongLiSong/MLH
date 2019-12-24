@@ -80,6 +80,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .bannerbox{
       position: absolute;
         top: 0;

@@ -12,7 +12,7 @@
          </div>
       </swiper>
       <div class="detail_menu">
-        <h3>{{ detailInfo.name }}</h3>
+        <h3 class="myname">{{ detailInfo.name }}</h3>
         <span class="marketPrice">{{detailInfo.marketPrice}}</span>
         <span class="price">￥{{detailInfo.price}}</span>
         <span class="discount">{{detailInfo.discount}}</span>
@@ -146,21 +146,28 @@ export default {
       // console.log($('.toincart').find('.size_choose').text())
       // console.log(Number(this.$refs.mynum.innerHTML))
       // console.log(this.$refs.myimg[0].src)
+      var myname = $('.detail_menu').find('.myname').text()
       var myprice = Number(this.$refs.myprice.innerHTML)
       var mysize = $('.toincart').find('.size_choose').text()
       // var myvalue = this.$refs.myvalue[0].innerHTML
       var myvalue = $('.toincart').find('.value').text()
-      console.log(myvalue)
+      // console.log(myvalue)
       var myimg = this.$refs.myimg[0].src
       var mynum = Number(this.$refs.mynum.innerHTML)
 
       console.log(JSON.stringify(myprice))
-      localStorage.setItem('价格', JSON.stringify(myprice))
-      localStorage.setItem('已选', JSON.stringify(myvalue))
-      localStorage.setItem('尺码', JSON.stringify(mysize))
-      localStorage.setItem('图片', JSON.stringify(myimg))
-      localStorage.setItem('数量', JSON.stringify(mynum))
+      var valueObj = {
+        name: myname,
+        price: myprice,
+        value: myvalue,
+        size: mysize,
+        myimg: myimg,
+        num: mynum
+      }
+      localStorage.setItem('cart', JSON.stringify(valueObj))
+      var storedNames = JSON.parse(localStorage.getItem('cart') || [])
 
+      console.log(storedNames)
       alert('添加成功')
     },
     showmun () {
