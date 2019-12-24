@@ -1,9 +1,9 @@
 <template>
     <div>
-        <ul>
+        <ul id="isWhite" :class="{'isWhite' : isWhite}">
             <!-- <li tag="li" to="">推荐</li> -->
             <router-link  v-for="data in routerlist" :key="data.id" tag="li" active-class="active" :to="data.path" @click.native="getid(data.id)">
-              <span>
+              <span id="isBlack" :class="{'isBlack' : isBlack}">
                 {{data.name}}
               </span>
             </router-link>
@@ -18,6 +18,8 @@ import Vuex from 'vuex'
 export default {
   data () {
     return {
+      isBlack: false,
+      isWhite: false,
       navlist: [],
       routerlist: [
         {
@@ -62,12 +64,32 @@ export default {
       ]
     }
   },
+  mounted () {
+    window.addEventListener('scroll', this.initHeight)
+    this.$nextTick(() => {
+      // 获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置
+      this.offsetTop = document.querySelector('#boxFixed').offsetTop
+      this.offsetTop = document.querySelector('#isHeight').offsetTop
+    })
+  },
   methods: {
     getid (id) {
       this.$store.dispatch('getNavId', id)
       console.log(this.$store.state.bannerlist)
       console.log('id:' + id)
+    },
+    initHeight () {
+      // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      // 如果被卷曲的高度大于吸顶元素到顶端位置 的距离
+      this.isBlack = scrollTop > this.offsetTop
+      this.isWhite = scrollTop > this.offsetTop
+      // console.log('吸顶')
     }
+  },
+  // 回调中移除监听
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -78,9 +100,14 @@ div{
     white-space: nowrap;
     position: relative;
     z-index: 100;
-}
+    color: #fff;
+ }
+      .isWhite{
+        background: #fff;
+        box-shadow: 0 0.013333rem 0.133333rem 0.066667rem rgba(0,0,0,.09);
+      }
     ul{
-      height: 0.5rem;
+      height: 0.4rem;
       display: -ms-flexbox;
       display: flex;
       -ms-flex-pack: justify;
@@ -100,10 +127,12 @@ div{
               margin-left: -0.1rem;
           }
           }
-        color: #fff;
-        margin-top: 0.1rem;
-        width: 100%;
+        padding-top: 0.1rem;
+        width: 116%;
         padding-left:0.1rem;
+        .isBlack{
+          color: #000;
+        }
         li{
           margin-right: 0.2rem;
             float: left;
