@@ -54,5 +54,23 @@ export default {
 <style lang="scss" scoped>
   .ntn_height{
     height: 3.6rem;
+        height: 3.9rem;
+  }
+  .isHeight{
+    height: 4.8rem;
+  }
+  .box_fixed{
+    width: 100%
+  }
+   .is_fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+
+    .searchHead{
+      background: rgba($color: #fff, $alpha: 1.0);
+    }
+
   }
 </style>

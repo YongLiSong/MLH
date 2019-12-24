@@ -50,6 +50,9 @@ export default {
     console.log(this.$route.params.searchid)
   },
   methods: {
+    handlclick (id) {
+      this.$router.push(`/detail/${id}`)
+    },
     loadMore () {
       this.num++
       this.loading = true
