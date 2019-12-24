@@ -127,7 +127,7 @@ div{
           }
           }
         padding-top: 0.1rem;
-        width: 100%;
+        width: 116%;
         padding-left:0.1rem;
         .isBlack{
           color: #000;
