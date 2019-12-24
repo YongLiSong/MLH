@@ -2,7 +2,7 @@
   <div>
     <swiper v-if="bannerlist.length" class="bannerbox">
      <div class="swiper-slide" v-for="data in bannerlist" :key="data.di" >
-         <img :src="data.main_image" @click="handeclick(data.di)">
+         <img :src="data.main_image">
          <div class="bannercontent">
            <h2>{{data.main_title}}</h2>
            <span class="sub_title">{{data.sub_title}}</span>

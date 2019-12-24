@@ -3,11 +3,13 @@
     <div>
     <div class="bannerbox">
       <div class="swiper-slide">
-        <img src="TB1WQ91o4z1gK0jSZSgXXavwpXa-750-900.jpg" @click="handeclick(data.di)" />
+        <img src="TB1WQ91o4z1gK0jSZSgXXavwpXa-750-900.jpg" />
       </div>
     </div>
     <div v-if="list.length" class="listbox">
-       <ul>
+       <ul v-infinite-scroll="loadMore"
+            infinite-scroll-disabled="loading"
+            infinite-scroll-distance="10">
         <li v-for="data2 in list" :key="data2.eventId" @click="golist(data2.eventId)">
           <img :src="data2.imageUrl" :alt="data2.englishName">
           <div class="listcontent">
@@ -30,20 +32,34 @@ import Axios from 'axios'
 export default {
   data () {
     return {
-      list: []
+      list: [],
+      info: null,
+      num: 1
     }
   },
   methods: {
+    loadMore () {
+      this.num++
+      if (this.num > this.info.totalPages) {
+        return
+      }
+      Axios({
+        url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=women&pageIndex=${this.num}&timestamp=1576997710438&summary=0ca8d473177520a42ea581d9d7f2fde6&platform_code=H5`
+      }).then(res => {
+        this.list = [...this.list, ...res.data.eventList]
+        console.log(res.data)
+      })
+    },
     golist (id) {
       this.$router.push(`/list/${id}`)
     }
   },
   mounted () {
     Axios({
-      url: 'http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=women&pageIndex=1&timestamp=1576997710438&summary=0ca8d473177520a42ea581d9d7f2fde6&platform_code=H5'
+      url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=women&pageIndex=${this.num}&timestamp=1576997710438&summary=0ca8d473177520a42ea581d9d7f2fde6&platform_code=H5`
     }).then(res => {
       this.list = res.data.eventList
-      console.log(this.list)
+      this.info = res.data
     })
   }
 }
