@@ -147,6 +147,7 @@ export default {
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
+  padding-left: 0.1rem;
   ul{
     padding: 0.1rem;
     box-sizing: border-box;
@@ -156,8 +157,9 @@ export default {
     &:after{
         content: "";
         display: block;
-        height: 100%;
-        width: 100%;
+        height: 1.6rem;
+        width: 1.7rem;
+        box-sizing: border-box;
         position: absolute;
         top: 0;
         left: 0;
