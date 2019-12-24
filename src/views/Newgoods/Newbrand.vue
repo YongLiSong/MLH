@@ -14,14 +14,14 @@
                 <img :src="data2.imageUrl" alt="">
                 <span @click="godetail(data2.productId)"></span>
               </div>
-                <p>{{data2.itemPriceDto.price}}</p>
-                <p><s>{{data2.marketPrice}}</s></p>
+                <p>¥{{data2.itemPriceDto.price}}</p>
+                <p><s>¥{{data2.marketPrice}}</s></p>
             </li>
             <li class="fourcase">
               <img :src="data3.imageUrl" alt="" v-for="data3 in data.products.slice(2,6)" :key="data3.productId">
-              <span></span>
+              <span @click="gotolist(data.eventId)"></span>
             </li>
-              <p class="lookmore">查看更多</p>
+              <p class="lookmore" @click="gotolist(data.eventId)">查看更多</p>
           </ul>
       </div>
 </template>
@@ -42,6 +42,9 @@ export default {
   methods: {
     godetail (id) {
       this.$router.push(`/detail/${id}`)
+    },
+    gotolist (id) {
+      this.$router.push(`/list/${id}`)
     }
   },
   mounted () {
@@ -81,10 +84,11 @@ export default {
       }
     }
     ul{
+      border-radius: 0.05rem;
       width: 3.52rem;
       height: 2.4rem;
       background-color: #fff;
-      margin: 0.2rem auto;
+      margin: 0.1rem auto;
       padding:0.14rem;
       box-sizing: border-box;
       h3{
@@ -93,7 +97,7 @@ export default {
           font-size: 0.18rem;
           line-height: 0.18rem;
           margin-bottom: 0.07rem;
-
+          font-weight:bolder;
         }
         span{
           &:nth-of-type(1){

@@ -10,6 +10,10 @@ module.exports = {
         // ws: true,
         changeOrigin: true
       },
+      '/wh': {
+        target: 'https://a.mei.com',
+        changeOrigin: true
+      },
       '/foo': {
         target: '<other_url>'
       }
