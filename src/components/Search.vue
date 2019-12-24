@@ -11,7 +11,7 @@
             <div>
                 <div class="inputbox">
                     <span class="iconfont icon-icon-test12"></span>
-                    <input search="text" v-model="inputtext" @input="search()">
+                    <input search="text" v-model="inputtext" @input="search()" @keypress="downenter($event)">
                     <span @click="cleartext()" class="reset">
                         <span>x</span>
                     </span>
@@ -39,6 +39,11 @@ export default {
     }
   },
   methods: {
+    downenter (evt) {
+      if (evt.key === 'Enter') {
+        this.$router.push(`/searchlistpage/${this.inputtext}`)
+      }
+    },
     initHeight () {
       // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
