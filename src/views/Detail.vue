@@ -89,7 +89,7 @@
             <button class="add" @click="add">+</button>
           </div>
           <div class="add_buy">
-            <button class="addCart1" @click="addCart">加入购物车</button>
+            <button class="addCart1" @click="addCart()">加入购物车</button>
             <button class="buynow1">立即购买</button>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default {
     Axios({
       url: `http://www.mei.com/appapi/product/detail/v3?categoryId=2120005100000003429&productId=${this.$route.params.glsCode}&platform_code=H5&timestamp=1577067298102&summary=b558c216920bbc762468d976457e41f3`
     }).then(res => {
-      console.log(res.data.infos)
+      // console.log(res.data.infos)
       this.detailInfo = res.data.infos
       this.detailBanner = this.detailInfo.images
       this.detailParameter = this.detailInfo.description.attributesList
@@ -156,8 +156,8 @@ export default {
       var myimg = this.$refs.myimg[0].src
       var mynum = Number(this.$refs.mynum.innerHTML)
 
-      console.log(JSON.stringify(myprice))
-      var valueObj = {
+      // console.log(JSON.stringify(myprice))
+      let valueObj = {
         name: myname,
         price: myprice,
         value: myvalue,
@@ -165,11 +165,38 @@ export default {
         myimg: myimg,
         num: mynum
       }
-      localStorage.setItem('cart', JSON.stringify(valueObj))
-      var storedNames = JSON.parse(localStorage.getItem('cart') || [])
 
-      console.log(storedNames)
+      let result = this.getCartStorage() || []
+      let flag = true
+      let rrr = -1
+      // console.log(result.length)
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].name === valueObj.name && result[i].size === valueObj.size) {
+          flag = false
+          rrr = i
+          // console.log(rrr)
+        }
+      }
+      // console.log('result',result)
+      // console.log('flag',flag)
+      if (flag) {
+        result.push(valueObj)
+        // console.log(valueObj)
+      } else {
+        // console.log('rrr',rrr)
+        result[rrr].num += valueObj.num
+      }
+
+      this.setCartStorage(result)
+      // cb();
+      // console.log(this.getCartStorage())
       alert('添加成功')
+    },
+    getCartStorage () {
+      return JSON.parse(localStorage.getItem('cart'))
+    },
+    setCartStorage (result) {
+      return localStorage.setItem('cart', JSON.stringify(result))
     },
     showmun () {
       this.isShow = !this.isShow
