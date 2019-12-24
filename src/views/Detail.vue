@@ -3,7 +3,7 @@
       <listnav>
         <div class="detail_title">
             <span class="brand">{{detailInfo.brand}}</span>
-            <span class="price">{{detailInfo.price}}</span>
+            <span class="price">¥{{detailInfo.price}}</span>
         </div>
       </listnav>
       <swiper v-if="detailBanner.length"  class="bannerbox">
@@ -66,10 +66,10 @@
         <transition name="kerwinbounce">
         <div class="toincart" v-show="isShow" ref="mycarts">
           <div class="toincart_img"  v-for="(items,index) in detailInfo.images.slice(0,1)" :key="index">
-            <img :src="items.bigImgUrl" style="width:0.76rem;">
+            <img :src="items.bigImgUrl" style="width:0.76rem;" ref="myimg">
           </div>
           <i class="iconfont icon-icon-test44" @click="nonemun"></i>
-          <span>￥</span>
+          <span class="price_unit">￥</span>
           <h2 ref="myprice">{{detailInfo.price}}</h2>
           <ul class="color">
             <li v-for="(dist,index) in detailParameter.slice(5,6)" :key="index">
@@ -104,6 +104,7 @@
 import Axios from 'axios'
 import listnav from '@/components/Listnav'
 import swiper from '@/components/Swiper'
+import $ from 'jquery'
 export default {
   data () {
     return {
@@ -140,14 +141,27 @@ export default {
   methods: {
     addCart: function () {
       // localStorage.setItem(myprice, myvalue, mysize, mynum)
-      console.log(Number(this.$refs.myprice.innerHTML))
-      console.log(this.$refs.myvalue[0].innerHTML)
-      console.log(this.$refs.mysize.innerHTML)
-      console.log(Number(this.$refs.mynum.innerHTML))
-      // var myprice = Number(this.$refs.myprice.innerHTML)
+      // console.log(Number(this.$refs.myprice.innerHTML))
+      // console.log(this.$refs.mysize.filter('size_choose').html())
+      // console.log($('.toincart').find('.size_choose').text())
+      // console.log(Number(this.$refs.mynum.innerHTML))
+      // console.log(this.$refs.myimg[0].src)
+      var myprice = Number(this.$refs.myprice.innerHTML)
+      var mysize = $('.toincart').find('.size_choose').text()
       // var myvalue = this.$refs.myvalue[0].innerHTML
-      // var mysize = this.$refs.mysize.innerHTML
-      // var mynum = Number(this.$refs.mynum.innerHTML)
+      var myvalue = $('.toincart').find('.value').text()
+      console.log(myvalue)
+      var myimg = this.$refs.myimg[0].src
+      var mynum = Number(this.$refs.mynum.innerHTML)
+
+      console.log(JSON.stringify(myprice))
+      localStorage.setItem('价格', JSON.stringify(myprice))
+      localStorage.setItem('已选', JSON.stringify(myvalue))
+      localStorage.setItem('尺码', JSON.stringify(mysize))
+      localStorage.setItem('图片', JSON.stringify(myimg))
+      localStorage.setItem('数量', JSON.stringify(mynum))
+
+      alert('添加成功')
     },
     showmun () {
       this.isShow = !this.isShow
@@ -492,11 +506,16 @@ export default {
       top: 0.15rem;
       color: #828282;
     }
+    .price_unit{
+      position: absolute;
+      left: 1.11rem;
+      top: 0.32rem;
+    }
     h2{
       font-size: 0.16rem;
       color: #000;
       position: absolute;
-      left: 1.11rem;
+      left: 1.27rem;
       top: 0.32rem;
       font-weight: bold;
     }
@@ -505,6 +524,12 @@ export default {
       left: 1.11rem;
       top: 0.55rem;
       color: #666666;
+      span{
+        float: left;
+      }
+      p.value{
+        width: 1.9rem
+      }
     }
   .size{
       width: 2.85rem;
@@ -554,7 +579,7 @@ export default {
       top: 1.97rem;
       width: 3.47rem;
       i{
-        margin-right: 2.1rem;
+        margin-right: 2.0rem;
       }
       button{
         width: 0.3rem;
