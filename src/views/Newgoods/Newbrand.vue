@@ -1,12 +1,17 @@
 <template>
-    <div>
-        <ul v-for="data in newbrandlist" :key="data.eventId">
-            <h3>{{data.englishName}}</h3>
-            <li v-for="data2 in data.products" :key="data2.productId">
+      <div id='newbrand'>
+        <h2>
+          品牌上新 | 24.Dec
+        </h2>
+         <ul v-for="data in newbrandlist" :key="data.eventId">
+            <h3>
+              <p>{{data.englishName}}</p>
+            </h3>
+            <li v-for="data2 in data.products.slice(0,6)" :key="data2.productId">
                 <img :src="data2.imageUrl" alt="">
             </li>
-        </ul>
-    </div>
+          </ul>
+      </div>
 </template>
 <script>
 import Axios from 'axios'
@@ -27,3 +32,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  #newbrand{
+    padding: 0
+  }
+</style>
