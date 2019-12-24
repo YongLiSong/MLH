@@ -84,10 +84,7 @@ const routes = [
     path: '/shoppingcar',
     component: ShoppingCar
   },
-  {
-    path: '/searchlist/:goodsname',
-    component: SearchList
-  },
+
   {
     path: '/qingcang',
     component: Qingcang

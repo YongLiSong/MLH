@@ -12,7 +12,7 @@
     </swiper>
     <div class="newday" v-if="newday.length">
       <!-- 每日新栏 -->
-      <ul v-for="(newdata,index) in newday" :key="index" @click="gonewgoods()">
+      <ul v-for="(newdata,index) in newday" :key="index" @click="gonewgoods(index)">
         <h3>{{newdata.main_title}}<span>{{newdata.sub_title}}</span></h3>
         <li v-for="(newlistdata,aaaa) in newdata.products" :key="aaaa" >
           <img :src="newlistdata.picUrl">
@@ -66,8 +66,12 @@ export default {
     })
   },
   methods: {
-    gonewgoods () {
-      this.$router.push('/newgoods')
+    gonewgoods (index) {
+      if (index === 0) {
+        this.$router.push('/newgoods')
+      } else if (index === 1) {
+        this.$router.push('/qingcang')
+      }
     },
     golist (id) {
       // console.log(this.$router)
