@@ -15,7 +15,7 @@
             v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
-        <li v-for="data2 in list" :key="data2.eventId" @click="golist(data2.eventId)">
+        <li v-for="(data2,index) in list" :key="index" @click="golist(data2.eventId)">
           <img :src="data2.imageUrl" :alt="data2.englishName">
           <div class="listcontent">
             <h3>{{data2.englishName}}</h3>
