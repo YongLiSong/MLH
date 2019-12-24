@@ -103,7 +103,8 @@ div{
     color: #fff;
  }
       .isWhite{
-        background: #fff
+        background: #fff;
+        box-shadow: 0 0.013333rem 0.133333rem 0.066667rem rgba(0,0,0,.09);
       }
     ul{
       height: 0.4rem;

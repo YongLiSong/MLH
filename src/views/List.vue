@@ -15,6 +15,14 @@
                 <span class="discount">{{item.discount}}折</span>
             </li>
         </ul>
+        <div class="scollTop">
+          <div class="carts">
+            <i class="iconfont icon-icon-test10"></i>
+          </div>
+          <div class="Top" @click="backTop" v-if="btnFlag">
+            <i class="iconfont icon-icon-test64"></i>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -28,7 +36,8 @@ export default {
       meiInfo: null,
       productsTnfo: null,
       meiInfoList: [],
-      num: 1
+      num: 1,
+      btnFlag: false
     }
   },
   components: {
@@ -50,7 +59,11 @@ export default {
       console.log(this.meiInfoList)
       // console.log(this.productsTnfo)
       Indicator.close()
+      window.addEventListener('scroll', this.scrollToTop)
     })
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.scrollToTop)
   },
   methods: {
     handlclick (id) {
@@ -69,6 +82,30 @@ export default {
         // console.log(this.meiInfoList)
         this.meiInfoList = [...this.meiInfoList, ...res.data.products]
       })
+    },
+    // 点击图片回到顶部方法，加计时器是为了过渡顺滑
+    backTop () {
+      const that = this
+      let timer = setInterval(() => {
+        let ispeed = Math.floor(-that.scrollTop / 5)
+        document.documentElement.scrollTop = document.body.scrollTop = that.scrollTop + ispeed
+        if (that.scrollTop === 0) {
+          clearInterval(timer)
+        }
+      }, 16)
+    },
+
+    // 为了计算距离顶部的高度，当高度大于60显示回顶部图标，小于60则隐藏
+    scrollToTop () {
+      const that = this
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      that.scrollTop = scrollTop
+      // console.log(that.scrollTop)
+      if (that.scrollTop > 1683) {
+        that.btnFlag = true
+      } else {
+        that.btnFlag = false
+      }
     }
   }
 }
@@ -109,6 +146,38 @@ export default {
       .discount{
         color: #777777;
         float: right;
+      }
+    }
+  }
+  .scollTop{
+    position: fixed;
+    right: 0.16rem;
+    bottom: 0.2rem;
+    .carts{
+      width: 0.4rem;
+      height: 0.4rem;
+      background: rgba($color: #fff, $alpha: 0.8);
+      box-shadow: 0 0.013333rem 0.133333rem 0.066667rem rgba(0,0,0,.05);
+      line-height: 0.4rem;
+      text-align: center;
+      border-radius: 100%;
+      i.icon-icon-test10{
+        font-size: 0.26rem;
+        color: #000;
+      }
+    }
+    .Top{
+      width: 0.4rem;
+      height: 0.4rem;
+      background: rgba($color: #fff, $alpha: 0.8);
+      box-shadow: 0 0.013333rem 0.133333rem 0.066667rem rgba(0,0,0,.05);
+      line-height: 0.4rem;
+      text-align: center;
+      border-radius: 100%;
+      margin-top: 0.1rem;
+      i.icon-icon-test64{
+        font-size: 0.26rem;
+        color: #000;
       }
     }
   }
