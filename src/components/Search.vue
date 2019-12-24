@@ -55,7 +55,7 @@ export default {
       //   console.log('吸顶')
     },
     gosearchlist (name) {
-      this.$router.push(`/searchlist/${name}`)
+      this.$router.push(`/searchlistpage/${name}`)
     },
     search () {
       Axios({

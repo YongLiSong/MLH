@@ -6,7 +6,6 @@ import Detail from '@/views/Detail'
 import List from '@/views/List'
 import Login from '@/views/Login'
 import ShoppingCar from '@/views/ShoppingCar'
-import SearchList from '@/views/SearchList'
 import Center from '@/views/Center'
 import Newgoods from '@/views/Newgoods'
 import Searchlistpage from '@/views/Searchlistpage'
@@ -83,10 +82,6 @@ const routes = [
   {
     path: '/shoppingcar',
     component: ShoppingCar
-  },
-  {
-    path: '/searchlist/:goodsname',
-    component: SearchList
   },
   {
     path: '/center',
