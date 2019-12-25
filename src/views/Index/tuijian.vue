@@ -94,7 +94,6 @@ export default {
     h2{
       font-size: 0.28rem;
     }
-    height: 0.1rem;
     display: flex;
     flex-flow: column;
     justify-content: space-around;
@@ -153,7 +152,7 @@ export default {
   flex-wrap: nowrap;
   padding-left: 0.1rem;
   ul{
-    padding: 0.1rem;
+    padding-top: 0.1rem;
     box-sizing: border-box;
     float: left;
     height: 1.5rem;
@@ -173,6 +172,7 @@ export default {
     h3{
       font-weight:500;
       font-size: 0.15rem;
+      margin-left: 0.1rem;
     }
     h3>span{
       margin-left: 0.1rem;

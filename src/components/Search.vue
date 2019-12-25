@@ -5,7 +5,7 @@
             <li>
                 <input type="search" v-model="inputtext" @click="searchgoods()" :class="{'isGrey' : isGrey}">
             </li>
-            <i class="iconfont icon-icon-test11" :class="{'isBlack' : isBlack}"></i>
+            <i class="iconfont icon-icon-test11" :class="{'isBlack' : isBlack}" @click="inCarts"></i>
         </ul>
         <div class="searchlist" v-if="$store.state.searchlistisShow">
             <div>
@@ -74,6 +74,9 @@ export default {
     },
     closeSearch () {
       this.$store.commit('closesearch')
+    },
+    inCarts () {
+      this.$router.push('/shoppingcar')
     }
   },
   mounted () {
@@ -102,9 +105,6 @@ export default {
     .searchHead{
         position: relative;
         z-index: 100;
-        height: 0.5rem;
-        flex-flow: row;
-        font-size: 0.14rem;
         color: #fff;
         li{
             text-align: center;

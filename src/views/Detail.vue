@@ -56,7 +56,7 @@
       </div>
       <!-- 底部固定 -->
       <div class="detail_bar">
-        <i class="iconfont icon-icon-test10"></i>
+        <i class="iconfont icon-icon-test10" @click="inCarts"></i>
         <p class="addCart" @click="showmun">加入购物车</p>
         <span></span>
         <p class="buynow">立即购买</p>
@@ -95,7 +95,6 @@
         </div>
         </transition>
       </div>
-
       <div class="button_box"></div>
     </div>
 </template>
@@ -140,6 +139,9 @@ export default {
     })
   },
   methods: {
+    inCarts () {
+      this.$router.push('/shoppingcar')
+    },
     addCart: function () {
       // console.log(Number(this.$refs.myprice.innerHTML))
       // console.log(this.$refs.mysize.filter('size_choose').html())

@@ -16,7 +16,7 @@
             </li>
         </ul>
         <div class="scollTop">
-          <div class="carts">
+          <div class="carts" @click="inCarts">
             <i class="iconfont icon-icon-test10"></i>
           </div>
           <div class="Top" @click="backTop" v-if="btnFlag">
@@ -67,6 +67,9 @@ export default {
     window.removeEventListener('scroll', this.scrollToTop)
   },
   methods: {
+    inCarts () {
+      this.$router.push('/shoppingcar')
+    },
     handlclick (id) {
       // console.log(this.$router)
       this.$router.push(`/Detail/${id}`)
