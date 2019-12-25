@@ -316,6 +316,20 @@ export default {
         width: 100%
       }
     }
+      /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet{
+        background:#c8c8c8;
+        border-radius: 0;
+        width: 0.06rem;
+        height: 0.06rem;
+        //--swiper-pagination-color:red;
+      }
+      /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet-active{
+        background:#030303;
+        border-radius: 0;
+        width: 0.06rem;
+        height: 0.06rem;
+        //--swiper-pagination-color:red;
+      }
   }
   .detail_menu{
     box-sizing: border-box;

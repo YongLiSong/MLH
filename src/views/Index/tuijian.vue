@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper v-if="bannerlist.length" class="bannerbox">
+    <swiper v-if="bannerlist.length" class="bannerbox" >
      <div class="swiper-slide" v-for="data in bannerlist" :key="data.di" >
          <img :src="data.main_image">
          <div class="bannercontent">
@@ -89,9 +89,23 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
-        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
-          bottom:0.27rem;
-        }
+          /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet{
+          background:#fff;
+          opacity: 0.6;
+          border-radius: 0;
+          width: 0.06rem;
+          height: 0.06rem;
+          //--swiper-pagination-color:red;
+          }
+          /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet-active{
+          background:#fff;
+          border-radius: 0;
+          width: 0.15rem;
+          height: 0.06rem;
+          opacity: 1;
+          //--swiper-pagination-color:red;
+          }
+
     }
   .bannercontent{
     h2{
