@@ -89,7 +89,7 @@
             <button class="add" @click="add">+</button>
           </div>
           <div class="add_buy">
-            <button class="addCart1" @click="addCart()">加入购物车</button>
+            <button class="addCart1" @click="addCart(detailInfo.glsCode)">加入购物车</button>
             <button class="buynow1">立即购买</button>
           </div>
         </div>
@@ -130,8 +130,9 @@ export default {
     Axios({
       url: `http://www.mei.com/appapi/product/detail/v3?categoryId=2120005100000003429&productId=${this.$route.params.glsCode}&platform_code=H5&timestamp=1577067298102&summary=b558c216920bbc762468d976457e41f3`
     }).then(res => {
-      // console.log(res.data.infos)
+      // console.log(res.data.infos.glsCode)
       this.detailInfo = res.data.infos
+      this.detailId = res.data.infos.glsCode
       this.detailBanner = this.detailInfo.images
       this.detailParameter = this.detailInfo.description.attributesList
       // console.log(this.detailParameter)
@@ -142,12 +143,14 @@ export default {
     inCarts () {
       this.$router.push('/shoppingcar')
     },
-    addCart: function () {
+    addCart: function (id) {
       // console.log(Number(this.$refs.myprice.innerHTML))
       // console.log(this.$refs.mysize.filter('size_choose').html())
       // console.log($('.toincart').find('.size_choose').text())
       // console.log(Number(this.$refs.mynum.innerHTML))
       // console.log(this.$refs.myimg[0].src)
+      var myid = id
+      console.log(myid)
       var myname = $('.detail_menu').find('.myname').text() // name -- 商品名
       var myprice = Number(this.$refs.myprice.innerHTML) // price -- 价格
       var mysize = $('.toincart').find('.size_choose').text() // size -- 尺码
@@ -156,6 +159,7 @@ export default {
       var mynum = Number(this.$refs.mynum.innerHTML) // num -- 数量
 
       let valueObj = {
+        id: myid,
         name: myname,
         price: myprice,
         value: myvalue,
@@ -169,7 +173,7 @@ export default {
       let nums = -1
       // console.log(result.length)
       for (var i = 0; i < result.length; i++) {
-        if (result[i].name === valueObj.name && result[i].size === valueObj.size) {
+        if (result[i].id === valueObj.id && result[i].size === valueObj.size) {
           flag = false
           nums = i
         }

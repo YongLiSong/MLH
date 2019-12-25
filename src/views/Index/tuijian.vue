@@ -89,6 +89,9 @@ export default {
       position: absolute;
         top: 0;
         width: 100%;
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+          bottom:0.27rem;
+        }
     }
   .bannercontent{
     h2{
