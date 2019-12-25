@@ -58,12 +58,15 @@ export default {
       this.$router.push(`/searchlistpage/${name}`)
     },
     search () {
-      Axios({
-        url: `http://www.meihigo.hk/appapi/search/searchSuggest/v3?text=${this.inputtext}`
-      }).then(res => {
-        this.searchlist = res.data.result ? res.data.result : []
-        console.log(this.searchlist)
-      })
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        Axios({
+          url: `http://www.meihigo.hk/appapi/search/searchSuggest/v3?text=${this.inputtext}`
+        }).then(res => {
+          this.searchlist = res.data.result
+        // console.log(this.searchlist)
+        })
+      }, 300)
     },
     cleartext () {
       this.inputtext = ''
