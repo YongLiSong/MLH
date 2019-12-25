@@ -90,20 +90,18 @@ export default {
         top: 0;
         width: 100%;
           /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet{
-          background:#fff;
-          opacity: 0.6;
-          border-radius: 0;
-          width: 0.06rem;
-          height: 0.06rem;
-          //--swiper-pagination-color:red;
+            background:#fff;
+            opacity: 0.6;
+            border-radius: 0;
+            width: 0.06rem;
+            height: 0.06rem;
           }
           /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet-active{
-          background:#fff;
-          border-radius: 0;
-          width: 0.15rem;
-          height: 0.06rem;
-          opacity: 1;
-          //--swiper-pagination-color:red;
+            background:#fff;
+            border-radius: 0;
+            width: 0.15rem;
+            height: 0.06rem;
+            opacity: 1;
           }
 
     }

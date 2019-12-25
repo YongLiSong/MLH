@@ -1,6 +1,6 @@
 <template>
   <div>
-      <input type="text" v-model="myText" maxlength="11" >
+      <input type="text" v-model="myText" maxlength="11" placeholder="手机号"  ref="name" v-on:keyup="inputRef">
       <div class="jiantou" @click="handleClick()" >→</div>
   </div>
 </template>
@@ -9,19 +9,32 @@ import Axios from 'axios'
 export default {
   data () {
     return {
-      myText: '手机号'
+      myText: ''
     }
   },
   methods: {
     handleClick () {
-      Axios({
-        url: '/appapi/customer/sendValiCodeLoginOrRegist',
-        data: { telphone: this.myText },
-        method: 'post'
-
-      }).then(res => {
-
-      })
+      // Axios({
+      //   url: '/appapi/customer/sendValiCodeLoginOrRegist',
+      //   data: { telphone: this.myText },
+      //   method: 'post'
+      // }).then(res => {
+      // })
+      // console.log(this.name)
+      localStorage.setItem('token', window.btoa(window.encodeURIComponent(JSON.stringify(this.name)))) // 加密方法
+      this.$router.push('/center')
+      // -------------- 解密方法 --------------
+      //  jieMi() {
+      //     var obj = JSON.parse(
+      //       decodeURIComponent(window.atob(localStorage.getItem("token")))
+      //     );
+      //     console.log(obj);
+      //   }
+      // -------------- 解密方法 --------------
+    },
+    inputRef: function () {
+      // console.log(this.$refs.name.value)
+      this.name = this.$refs.name.value
     }
   }
 }
