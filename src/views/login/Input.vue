@@ -1,11 +1,13 @@
 <template>
   <div>
-      <input type="text" v-model="myText" maxlength="11" placeholder="手机号"  ref="name" v-on:keyup="inputRef">
+      <input type="text" v-model="myText" maxlength="11" placeholder="请输入手机号"  ref="name" v-on:keyup="inputRef"
+      onfocus="this.placeholder=''" onblur="this.placeholder='请输入手机号'">
       <div class="jiantou" @click="handleClick()" >→</div>
   </div>
 </template>
 <script>
 import Axios from 'axios'
+import { Toast } from 'mint-ui'
 export default {
   data () {
     return {
@@ -23,6 +25,13 @@ export default {
       // console.log(this.name)
       localStorage.setItem('token', window.btoa(window.encodeURIComponent(JSON.stringify(this.name)))) // 加密方法
       this.$router.push('/center')
+      // 登陆成功提示框
+      Toast({
+        message: '登录成功',
+        position: 'center',
+        duration: 1000
+      })
+
       // -------------- 解密方法 --------------
       //  jieMi() {
       //     var obj = JSON.parse(
