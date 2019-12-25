@@ -17,7 +17,7 @@
 
             </li>
         </ul>
-              <!-- {{checkgroup}} -->
+              {{checkgroup}}
               <p>总金额{{ sum() }}</p>
     </div>
 </template>
@@ -76,9 +76,13 @@ export default {
     removeList (index) {
       this.cartList.splice(index, 1)
       console.log(index)
+      this.setCartStorage()
     },
     getCartStorage () {
       return JSON.parse(localStorage.getItem('cart'))
+    },
+    setCartStorage (checkgroup) {
+      return localStorage.setItem('cart', JSON.stringify(this.cartList))
     },
     // 从本地存储获取购物车数据
     cartInt () {
@@ -96,5 +100,8 @@ export default {
 <style lang="scss" scoped>
     img{
         width: 0.3rem;
+    }
+    li{
+      border: 1px solid #000;
     }
 </style>
