@@ -89,7 +89,7 @@
             <button class="add" @click="add">+</button>
           </div>
           <div class="add_buy">
-            <button class="addCart1" @click="addCart(detailInfo.glsCode)">加入购物车</button>
+            <button class="addCart1" @click="addCart(detailInfoID)">加入购物车</button>
             <button class="buynow1">立即购买</button>
           </div>
         </div>
@@ -109,6 +109,7 @@ export default {
   data () {
     return {
       detailInfo: null,
+      detailInfoID: null,
       detailBanner: [],
       detailParameter: [],
       countDownList: '00天00时00分00秒',
@@ -130,13 +131,23 @@ export default {
     Axios({
       url: `http://www.mei.com/appapi/product/detail/v3?categoryId=2120005100000003429&productId=${this.$route.params.glsCode}&platform_code=H5&timestamp=1577067298102&summary=b558c216920bbc762468d976457e41f3`
     }).then(res => {
-      // console.log(res.data.infos.glsCode)
+      // console.log(res.data.infos)
       this.detailInfo = res.data.infos
-      this.detailId = res.data.infos.glsCode
       this.detailBanner = this.detailInfo.images
       this.detailParameter = this.detailInfo.description.attributesList
       // console.log(this.detailParameter)
       // console.log(this.detailBanner)
+      // console.log(this.detailId)
+    })
+    Axios({
+      url: `http://www.mei.com/appapi/product/getProductPrice/v3?productId=${this.$route.params.glsCode}&userLevel=2&type=0`
+      // http://www.mei.com/appapi/product/getProductPrice/v3?productId=2121212199000081497&userLevel=2&type=0
+    }).then(res => {
+      // console.log(res.data.retDto.productId)
+      // console.log(this.$route.params.glsCode)
+      this.detailInfoID = this.$route.params.glsCode
+      // console.log(this.detailInfoID)
+      // this.detailId = this.$route.params.glsCode
     })
   },
   methods: {
@@ -159,7 +170,7 @@ export default {
       var mynum = Number(this.$refs.mynum.innerHTML) // num -- 数量
 
       let valueObj = {
-        id: myid,
+        id: myid + mysize,
         name: myname,
         price: myprice,
         value: myvalue,
