@@ -16,7 +16,7 @@ import Kids from '@/views/Index/Kids'
 import Men from '@/views/Index/Men'
 import Women from '@/views/Index/Women'
 import Lifestyle from '@/views/Index/Lifestyle'
-import Tuijian from '@/views/Index/tuijian'
+import Tuijian from '@/views/Index/Tuijian'
 import Qingcang from '@/views/Qingcang'
 
 Vue.use(VueRouter)
