@@ -110,7 +110,6 @@ import listnav from '@/components/Listnav'
 import swiper from '@/components/Swiper'
 import $ from 'jquery'
 import { Toast } from 'mint-ui'
-import { log } from 'util'
 export default {
   data () {
     return {
@@ -162,7 +161,7 @@ export default {
     let localcartNums = this.getCartStorage() || []
     this.cartNums = localcartNums.length
     // console.log(this.cartNums)
-    if (this.cartNums != 0) {
+    if (this.cartNums !== 0) {
       this.isNumShow = true
     } else {
       this.isNumShow = false
