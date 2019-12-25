@@ -211,8 +211,10 @@ export default {
         font-size: 0.1rem;
         text-align: center;
         width: 100%;
-        position: relative;
-        left: 0.06rem;
+        position: absolute;
+        bottom: -0.2rem;
+        left: 50%;
+        transform: translateX(-50%);
         border: 1px solid #000;
       }
     }

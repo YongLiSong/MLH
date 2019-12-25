@@ -67,6 +67,7 @@ export default {
     top: 0;
     left: 0;
     z-index: 999;
+    background: #fff;
 
     .searchHead{
       background: rgba($color: #fff, $alpha: 1.0);
