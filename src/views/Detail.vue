@@ -60,6 +60,9 @@
         <p class="addCart" @click="showmun">加入购物车</p>
         <span></span>
         <p class="buynow">立即购买</p>
+        <div class="cartsNum" id="cartsNum">
+          <p id="P"></p>
+        </div>
       </div>
       <!-- 展开的购物车 -->
       <div class="toincart_bg"  v-show="isShow">
@@ -116,7 +119,8 @@ export default {
       actEndTime: '2020-11-19 18:50:00',
       activeClass: 0,
       num: 1,
-      isShow: false
+      isShow: false,
+      eee: 0
     }
   },
   created () {
@@ -149,8 +153,15 @@ export default {
       // console.log(this.detailInfoID)
       // this.detailId = this.$route.params.glsCode
     })
+    this.eee = this.getCartStorage() || []
+    console.log(this.eee.length)
+    this.im(this.eee.length)
+    console.log(this.im())
   },
   methods: {
+    im: function (len) {
+      $('.detail_bar').find('#cartsNum').find('#P').html(len)
+    },
     inCarts () {
       this.$router.push('/shoppingcar')
     },
@@ -161,7 +172,7 @@ export default {
       // console.log(Number(this.$refs.mynum.innerHTML))
       // console.log(this.$refs.myimg[0].src)
       var myid = id
-      console.log(myid)
+      // console.log(myid)
       var myname = $('.detail_menu').find('.myname').text() // name -- 商品名
       var myprice = Number(this.$refs.myprice.innerHTML) // price -- 价格
       var mysize = $('.toincart').find('.size_choose').text() // size -- 尺码
@@ -183,6 +194,7 @@ export default {
       let flag = true
       let nums = -1
       // console.log(result.length)
+      // console.log(resultLength)
       for (var i = 0; i < result.length; i++) {
         if (result[i].id === valueObj.id && result[i].size === valueObj.size) {
           flag = false
@@ -535,6 +547,21 @@ export default {
     color: #e14343;
     font-weight: bold;
     margin-right: 0.2rem;
+  }
+  .cartsNum{
+    width: 0.15rem;
+    height: 0.15rem;
+    background: #dd2828;
+    border-radius: 100%;
+    position: absolute;
+    left: 0.39rem;
+    bottom: 0.3rem;
+    p{
+      color: #eeeeee;
+      text-align: center;
+      line-height: 0.15rem;
+      font-size: 0.08rem;
+    }
   }
 }
 .button_box{
