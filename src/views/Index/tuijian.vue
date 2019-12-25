@@ -156,9 +156,7 @@ export default {
     padding: 0.1rem;
     box-sizing: border-box;
     float: left;
-    width:45%;
     height: 1.5rem;
-    margin-left: 3%;
     height: 1.5rem;
     position: relative;
     &:after{
@@ -183,7 +181,7 @@ export default {
     }
     li{
       background-color: rgba($color: #000000, $alpha: 0.03);
-      margin-right: 0.15rem;
+      margin-right: 0.1rem;
       float: left;
       width: 40%;
       position: relative;
