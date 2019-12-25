@@ -112,4 +112,18 @@ const router = new VueRouter({
   routes
 })
 
+// 全局拦截
+router.beforeEach((to, from, next) => {
+  if (to.path === '/center' || to.path === '/shoppingcar') {
+    // console.log('拦截')
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+})
+
 export default router
