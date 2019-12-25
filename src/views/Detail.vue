@@ -60,8 +60,10 @@
         <p class="addCart" @click="showmun">加入购物车</p>
         <span></span>
         <p class="buynow">立即购买</p>
-        <div class="cartsNum" id="cartsNum">
-          <p id="P"></p>
+        <div class="cartsNum" id="cartsNum" v-show="isNumShow">
+          <p id="P">
+            {{cartNums}}
+          </p>
         </div>
       </div>
       <!-- 展开的购物车 -->
@@ -108,6 +110,7 @@ import listnav from '@/components/Listnav'
 import swiper from '@/components/Swiper'
 import $ from 'jquery'
 import { Toast } from 'mint-ui'
+import { log } from 'util'
 export default {
   data () {
     return {
@@ -120,7 +123,8 @@ export default {
       activeClass: 0,
       num: 1,
       isShow: false,
-      eee: 0
+      cartNums: 0,
+      isNumShow: false
     }
   },
   created () {
@@ -153,15 +157,18 @@ export default {
       // console.log(this.detailInfoID)
       // this.detailId = this.$route.params.glsCode
     })
-    this.eee = this.getCartStorage() || []
-    console.log(this.eee.length)
-    this.im(this.eee.length)
-    console.log(this.im())
+  },
+  updated () {
+    let localcartNums = this.getCartStorage() || []
+    this.cartNums = localcartNums.length
+    // console.log(this.cartNums)
+    if (this.cartNums != 0) {
+      this.isNumShow = true
+    } else {
+      this.isNumShow = false
+    }
   },
   methods: {
-    im: function (len) {
-      $('.detail_bar').find('#cartsNum').find('#P').html(len)
-    },
     inCarts () {
       this.$router.push('/shoppingcar')
     },
@@ -193,6 +200,7 @@ export default {
       let result = this.getCartStorage() || []
       let flag = true
       let nums = -1
+
       // console.log(result.length)
       // console.log(resultLength)
       for (var i = 0; i < result.length; i++) {
