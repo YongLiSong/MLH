@@ -61,7 +61,7 @@ export default {
   },
   mounted () {
     Axios({
-      url: `/wh/data/rmc/zebra/v1/454352/35864e02-b1d8-4053-b377-28e266017320.json`
+      url: `wh/data/rmc/zebra/v1/454352/35864e02-b1d8-4053-b377-28e266017320.json`
     }).then(res => {
       // console.log(res.data['2188294902'])
       this.title = res.data['2188294902'].config
