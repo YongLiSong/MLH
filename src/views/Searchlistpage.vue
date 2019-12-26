@@ -44,10 +44,8 @@ export default {
       this.meiInfo = res.data
       if (res.data.products.length === 0) {
         this.isShow = true
-        console.log(this.isShow)
       }
     })
-    console.log(this.$route.params.searchid)
   },
   methods: {
     handlclick (id) {
