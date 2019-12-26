@@ -61,16 +61,14 @@ export default {
   },
   mounted () {
     Axios({
-      url: `/wh/data/rmc/zebra/v1/454352/35864e02-b1d8-4053-b377-28e266017320.json`
+      url: `wh/data/rmc/zebra/v1/454352/35864e02-b1d8-4053-b377-28e266017320.json`
     }).then(res => {
-      console.log(res.data['2188294902'])
       this.title = res.data['2188294902'].config
     })
     Axios({
       url: `https://www.mei.com/appapi/ninenew/categoryList/v3?newType=1`
     }).then(res => {
       this.titlelist = res.data.result
-      console.log(this.titlelist)
     })
     Axios({
       url: `https://www.mei.com/appapi/ninenew/getCategoryProductList/v3?pageIndex=${this.num}&sort&key&newType=1&minPrice&maxPrice&brandNames&frontFirstCategoryIds&frontSecondCategoryIds&frontThirdCategoryIds&productSizes&cmsId&size`

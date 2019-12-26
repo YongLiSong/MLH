@@ -79,7 +79,7 @@ export default {
   mounted () {
     // header
     Axios({
-      url: '/wh/data/rmc/zebra/v1/446076/7d927402-d665-4024-8117-c10ae68e3c17.json',
+      url: 'wh/data/rmc/zebra/v1/446076/7d927402-d665-4024-8117-c10ae68e3c17.json',
       headers: {
         'Conten-Type': 'aplication/json'
       }
