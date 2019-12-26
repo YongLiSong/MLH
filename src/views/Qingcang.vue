@@ -55,8 +55,10 @@
                   </div>
 
               </swiper>
+
           </div>
-          <centerbox></centerbox>
+          <centerbox class="centerbottom"></centerbox>
+          <centerbox class="centerbottom"></centerbox>
       </div>
   </div>
 </template>
@@ -121,7 +123,8 @@ export default {
 
     }
     .center{
-        background: #015146;
+
+        background: #a00b0b;
         padding: 0.12rem;
         .centertop{
           border-radius: 0.05rem;
@@ -202,6 +205,11 @@ export default {
               margin-bottom: 0.3rem
             }
           }
+        }
+        .centerbottom{
+          width: 100%;
+
+          overflow: hidden;
         }
       }
   }
