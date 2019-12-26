@@ -55,7 +55,6 @@ export default {
       })
     },
     golist (id) {
-      console.log(id)
       this.$router.push(`/list/${id}`)
     }
   },
