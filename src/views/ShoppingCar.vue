@@ -1,26 +1,46 @@
 <template>
     <div>
-         <input type="checkbox" v-model="isAllChecked" @change="handleChange"/>
+      <listnav>
+        <div class="detail_title">
+          <p>购物车</p>
+        </div>
+      </listnav>
         <ul>
-            <li v-for="(list,index) in cartList" :key="list.id">
-                 <input type="checkbox" v-model="checkgroup" :value="list" @change="handleItemchange"/>
-                {{ list.id }}
-                {{ list.name }}
+            <li v-for="(list,index) in cartList" :key="list.id" class="cart_li">
+                <input type="checkbox" v-model="checkgroup" :value="list" @change="handleItemchange"/>
+                <!-- {{ list.id }} -->
                 <img :src="list.myimg" />
-                ￥{{ list.price }}
-                {{ list.size }}
-                <button @click="handleDel(list)">-</button>
-                {{ list.num }}
-                <button @click="list.num++">+</button>
-                {{ list.value }}  ------{{index}}
-                <button @click="removeList(index)">删除</button>
+                <div class="cartFont">
+                  <h3>{{ list.name }}</h3>
+                  <div class="value_size">
+                    <p>已选：{{ list.value }}</p>
+                    <p>{{ list.size }}</p>
+                  </div>
+                  <div class="price_num">
+                    <p>￥{{ list.price }}</p>
+                    <div class="num">
+                      <button @click="handleDel(list)" class="min">-</button>
+                      <span>{{ list.num }}</span>
+                      <button @click="list.num++" class="add">+</button>
+                    </div>
+                  </div>
+                  <button @click="removeList(index)" class="remove">删除</button>
+                </div>
             </li>
         </ul>
-              <!-- {{checkgroup}} -->
-              <p>总金额{{ sum() }}</p>
+        <!-- {{checkgroup}} -->
+        <div class="cartFix">
+          <div class="CheckAll">
+            <input type="checkbox" v-model="isAllChecked" @change="handleChange"/>
+            <p>全选</p>
+          </div>
+          <p class="allprice">总金额: <span>￥{{ sum() }}</span></p>
+          <button class="buynow">去结算</button>
+        </div>
     </div>
 </template>
 <script>
+import listnav from '@/components/Listnav'
 import { MessageBox } from 'mint-ui'
 export default {
   data () {
@@ -30,6 +50,9 @@ export default {
       priceSum: 0,
       checkgroup: []
     }
+  },
+  components: {
+    listnav
   },
   mounted () {
     this.cartInt()
@@ -105,10 +128,140 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    img{
-        width: 0.3rem;
+.cartFix{
+  box-sizing: border-box;
+  width: 100%;
+  height: 0.5rem;
+  box-shadow: 0 0.013333rem 0.133333rem 0.066667rem rgba(0,0,0,.05);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.12rem ;
+  .CheckAll{
+    width: 0.65rem;
+    height: 100%;
+    margin-top: 0.14rem;
+    input{
+      width: 0.18rem;
+      height: 0.18rem;
+      background: #fff;
+      float: left;
+      margin-right: 0.11rem;
+    }
+  }
+  .allprice{
+    margin-right: 1.24rem;
+    margin-top: 0.16rem;
+    color: #000;
+    font-weight: bold;
+    span{
+      color: #dc2424;
+    }
+  }
+  .buynow{
+    width: 1.09rem;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    color: #fff;
+    background: #dc2424;
+  }
+}
+.detail_title{
+      width: 100%;
+      p{
+        text-align: center;
+      }
     }
     li{
-      border: 1px solid #000;
+      width: 100%;
+      height: 1.4rem;
+      border-top: 1px solid #dfdfdf;
+      border-bottom: 1px solid #dfdfdf;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0.14rem;
+      input{
+        width: 0.18rem;
+        height: 0.18rem;
+        background: #fff;
+        border: none;
+        border: 1px solid #e0e0e0;
+        margin-right: 0.11rem;
+        margin-top: 0.44rem;
+      }
+      img{
+        width: 0.97rem;
+        margin-right: 0.11rem;
+      }
+      .cartFont{
+        flex: 1;
+        h3{
+          width: 2.08rem;
+          font-size: 0.14rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-top: 0.03rem;
+          font-weight: bold;
+        }
+        .value_size{
+          width: 2.08rem;
+          height: 0.25rem;
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          box-sizing: border-box;
+          padding-left: 0.04rem;
+          margin-top: 0.07rem;
+          p{
+            float: left;
+            line-height: 0.25rem;
+            font-size: 0.14rem;
+            color: #9d9d9d;
+            margin-right: 0.13rem;
+          }
+        }
+        .price_num{
+          width: 2.08rem;
+          display: flex;
+          justify-content: space-between;
+          margin-top: 0.07rem;
+          p{
+            font-size: 0.14rem;
+            color: #dc2424;
+            font-weight: bold;
+          }
+          .num{
+            width: 0.73rem;
+            height: 0.22rem;
+            button{
+              width: 0.22rem;
+              height: 0.22rem;
+              border: none;
+              background: #e0e0e0;
+            }
+            button.min{
+              margin-right: 0.1rem;
+            }
+            button.add{
+              margin-left: 0.1rem;
+            }
+          }
+        }
+        .remove{
+          width: 0.5rem;
+          height: 0.19rem;
+          border: none;
+          background: #dc2424;
+          color: #fff;
+          margin-top: 0.05rem;
+        }
+      }
     }
 </style>
