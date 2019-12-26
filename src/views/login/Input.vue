@@ -52,7 +52,6 @@ export default {
   input{
     width: 100%;
     height: 60px;
-    color: #ddd;
     box-sizing: border-box;
     margin-bottom: 10px;
     border: 1px solid #eee;
