@@ -37,6 +37,7 @@
           <p class="allprice">总金额: <span>￥{{ sum() }}</span></p>
           <button class="buynow">去结算</button>
         </div>
+        <div class="button_box"></div>
     </div>
 </template>
 <script>
@@ -263,5 +264,9 @@ export default {
           margin-top: 0.05rem;
         }
       }
+    }
+    .button_box{
+      height: 0.5rem;
+      width: 100%;
     }
 </style>

@@ -47,7 +47,7 @@ export default {
         url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=women&pageIndex=${this.num}&timestamp=1576997710438&summary=0ca8d473177520a42ea581d9d7f2fde6&platform_code=H5`
       }).then(res => {
         this.list = [...this.list, ...res.data.eventList]
-        console.log(res.data)
+        // console.log(res.data)
       })
     },
     golist (id) {

@@ -51,7 +51,7 @@ export default {
         url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=kids&pageIndex=${this.num}&timestamp=1576997107329&summary=111bb03d1e8469e7ff1def4b0e6dcd57&platform_code=H5`
       }).then(res => {
         this.list = [...this.list, ...res.data.eventList]
-        console.log('123123')
+        // console.log('123123')
       })
     },
     golist (id) {

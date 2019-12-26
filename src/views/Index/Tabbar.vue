@@ -73,8 +73,8 @@ export default {
   methods: {
     getid (id) {
       this.$store.dispatch('getNavId', id)
-      console.log(this.$store.state.bannerlist)
-      console.log('id:' + id)
+      // console.log(this.$store.state.bannerlist)
+      // console.log('id:' + id)
     },
     initHeight () {
       // 设置或获取位于对象最顶端和窗口中可见内容的最顶端之间的距离 (被卷曲的高度)

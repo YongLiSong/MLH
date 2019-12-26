@@ -52,7 +52,7 @@ export default {
       url: 'https://www.mei.com/appapi/ninenew/newBrandEvent/v1?pageIndex=1&credential'
     }).then(res => {
       this.newbrandlist = res.data.eventList.splice(0, 3)
-      console.log(this.newbrandlist)
+      // console.log(this.newbrandlist)
       this.list2 = res.data.eventList
     })
   }

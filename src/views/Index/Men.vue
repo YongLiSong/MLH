@@ -57,7 +57,7 @@ export default {
     }).then(res => {
       this.list = res.data.eventList
       this.info = res.data
-      console.log(this.list)
+      // console.log(this.list)
     })
   }
 }

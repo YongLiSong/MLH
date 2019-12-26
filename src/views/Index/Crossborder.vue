@@ -51,7 +51,7 @@ export default {
         url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=crossborder&pageIndex=${this.num}&timestamp=1576996731180&summary=f7f6ca48f5fba9a833637ee4157cdfc8&platform_code=H5`
       }).then(res => {
         this.list = [...this.list, ...res.data.eventList]
-        console.log(this.list)
+        // console.log(this.list)
       })
     },
     golist (id) {
@@ -69,7 +69,7 @@ export default {
     }).then(res => {
       this.list = res.data.eventList
       this.info = res.data
-      console.log(this.list)
+      // console.log(this.list)
     })
   }
 }

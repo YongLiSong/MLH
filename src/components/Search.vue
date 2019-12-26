@@ -1,11 +1,16 @@
 <template>
     <div>
         <ul class="searchHead" id="isSearch" :class="{'isSearch' : isSearch}">
-            <router-link to="/login" tag="li" id="isBlack" :class="{'isBlack' : isBlack}">登录</router-link>
+            <li id="isBlack" :class="{'isBlack' : isBlack}" @click="toCenter">登录</li>
             <li>
                 <input type="search" v-model="inputtext" @click="searchgoods()" :class="{'isGrey' : isGrey}">
             </li>
             <i class="iconfont icon-icon-test11" :class="{'isBlack' : isBlack}" @click="inCarts"></i>
+            <div class="cartsNum" id="cartsNum" v-show="isNumShow">
+              <p id="P">
+                {{cartNums}}
+              </p>
+            </div>
         </ul>
         <div class="searchlist" v-if="$store.state.searchlistisShow">
             <div>
@@ -28,6 +33,7 @@
 </template>
 <script>
 import Axios from 'axios'
+import $ from 'jquery'
 export default {
   data () {
     return {
@@ -35,10 +41,23 @@ export default {
       searchlist: [],
       isSearch: false,
       isBlack: false,
-      isGrey: false
+      isGrey: false,
+      cartNums: 0,
+      isNumShow: false
     }
   },
   methods: {
+    getCartStorage () {
+      return JSON.parse(localStorage.getItem('cart'))
+    },
+    toCenter () {
+      if (localStorage.getItem('token')) {
+        // console.log('ok')
+        this.$router.push('/center')
+      } else {
+        this.$router.push('/login')
+      }
+    },
     downenter (evt) {
       if (evt.key === 'Enter') {
         this.$router.push(`/searchlistpage/${this.inputtext}`)
@@ -94,6 +113,22 @@ export default {
       this.offsetTop = document.querySelector('#boxFixed').offsetTop
       this.offsetTop = document.querySelector('#isHeight').offsetTop
     })
+    if (localStorage.getItem('token')) {
+      // console.log('ok')
+      $('.searchHead').find('#isBlack').text('我的')
+    } else {
+      $('.searchHead').find('#isBlack').text('登录')
+    }
+  },
+  updated () {
+    let localcartNums = this.getCartStorage() || []
+    this.cartNums = localcartNums.length
+    // console.log(this.cartNums)
+    if (this.cartNums !== 0) {
+      this.isNumShow = true
+    } else {
+      this.isNumShow = false
+    }
   },
   // 回调中移除监听
   destroyed () {
@@ -104,6 +139,21 @@ export default {
 <style lang="scss" scoped>
     .isBlack{
         color: #000;
+    }
+    .cartsNum{
+      width: 0.15rem;
+      height: 0.15rem;
+      background: #dd2828;
+      border-radius: 100%;
+      position: absolute;
+      right: 0.1rem;
+      bottom: 0.25rem;
+      p{
+        color: #eeeeee;
+        text-align: center;
+        line-height: 0.15rem;
+        font-size: 0.08rem;
+      }
     }
     .searchHead{
         position: relative;

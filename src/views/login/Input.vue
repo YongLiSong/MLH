@@ -1,8 +1,8 @@
 <template>
   <div>
-      <input type="text" v-model="myText" maxlength="11" placeholder="请输入手机号"  ref="name" v-on:keyup="inputRef"
-      onfocus="this.placeholder=''" onblur="this.placeholder='请输入手机号'">
-      <div class="jiantou" @click="handleClick()" >→</div>
+      <input type="text" v-model="userName" placeholder="请输入用户名"  ref="username" v-on:keyup="inputRef"
+      onfocus="this.placeholder=''" onblur="this.placeholder='请输入用户名'">
+      <div class="jiantou" @click="handleClick(userName)" >→</div>
   </div>
 </template>
 <script>
@@ -11,11 +11,11 @@ import { Toast } from 'mint-ui'
 export default {
   data () {
     return {
-      myText: ''
+      userName: ''
     }
   },
   methods: {
-    handleClick () {
+    handleClick (username) {
       // Axios({
       //   url: '/appapi/customer/sendValiCodeLoginOrRegist',
       //   data: { telphone: this.myText },
@@ -23,8 +23,12 @@ export default {
       // }).then(res => {
       // })
       // console.log(this.name)
-      localStorage.setItem('token', window.btoa(window.encodeURIComponent(JSON.stringify(this.name)))) // 加密方法
+      localStorage.setItem('token', window.btoa(window.encodeURIComponent(JSON.stringify(this.username)))) // 加密方法
+      var keyMyName = window.btoa(window.encodeURIComponent(username))
+      // this.$router.push('/center')
       this.$router.push('/center')
+
+      // console.log(text)
       // 登陆成功提示框
       Toast({
         message: '登录成功',
@@ -43,7 +47,7 @@ export default {
     },
     inputRef: function () {
       // console.log(this.$refs.name.value)
-      this.name = this.$refs.name.value
+      this.username = this.$refs.username.value
     }
   }
 }
