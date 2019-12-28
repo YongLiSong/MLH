@@ -1,0 +1,6 @@
+diff a/src/views/qingcang/Swiper.vue b/src/views/qingcang/Swiper.vue	(rejected hunks)
+@@ -27,2 +27,2 @@ export default {
+-      slidesPerGroup:3,
+-      slidesPerView: 3,
++      slidesPerGroup: 3,
++      slidesPerView: 3

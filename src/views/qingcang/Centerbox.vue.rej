@@ -1,0 +1,23 @@
+diff a/src/views/qingcang/Centerbox.vue b/src/views/qingcang/Centerbox.vue	(rejected hunks)
+@@ -25,2 +25,2 @@ export default {
+-      datalist: [],
+-      
++      datalist: []
++
+@@ -29 +29 @@ export default {
+-  props: ['id', 'datalistlength','offsettop'],
++  props: ['id', 'datalistlength', 'offsettop'],
+@@ -43 +43 @@ export default {
+-    handleClick(id){
++    handleClick (id) {
+@@ -47,2 +47 @@ export default {
+-    handleGood(){
+-     
++    handleGood () {
+@@ -51 +50 @@ export default {
+-      
++
+@@ -53,2 +52 @@ export default {
+-     document.documentElement.scrollTop= this.offsettop
+-     
++      document.documentElement.scrollTop = this.offsettop
