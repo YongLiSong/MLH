@@ -70,7 +70,7 @@ export default {
       if (index === 0) {
         this.$router.push('/newgoods')
       } else if (index === 1) {
-        this.$router.push('/qingcang')
+        this.$router.push('/qingcang/good')
       }
     },
     golist (id) {

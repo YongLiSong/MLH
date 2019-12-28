@@ -10,10 +10,9 @@
                 <div>{{totalCount}}款</div>
                 <button>查看更多&gt;</button>
               </div>
-              <swiper :key="list.length">
+              <swiper :key="swiperList.length" class="swiper">
 
-                  <div class="swiper-slide">
-                      <div v-for="data in swiperList1" :key="data.gls_code" class="swiperbox">
+                      <div v-for="data in swiperList" :key="data.gls_code" @click="handlePush(data.first_category_id)" class="swiper-slide swiperbox">
                         <div class="slow">
                          <p>直降</p>
                           <p>{{data.priceDiff}}</p>
@@ -24,90 +23,76 @@
                           <p class="goodsprice">￥{{data.price}}</p>
                           <p class="dateprice">￥{{data.market_price}}</p>
                       </div>
-                  </div>
-
-                  <div class="swiper-slide">
-                    <div v-for="item in swiperList2" :key="item.gls_code" class="swiperbox">
-                      <div class="slow">
-                         <p>直降</p>
-                          <p>{{item.priceDiff}}</p>
-
-                        </div>
-                        <img :src="item.imageUrl" alt="">
-                        <p class="goodsname">{{item.brand_name}}</p>
-                          <p class="goodsprice">￥{{item.price}}</p>
-                          <p class="dateprice">￥{{item.market_price}}</p>
-                      </div>
-                  </div>
-
-                  <div class="swiper-slide">
-                      <div v-for="it in swiperList1" :key="it.gls_code" class="swiperbox">
-                        <div class="slow">
-                         <p>直降</p>
-                          <p>{{it.priceDiff}}</p>
-
-                        </div>
-                        <img :src="it.imageUrl" alt="">
-                        <p class="goodsname">{{it.brand_name}}</p>
-                          <p class="goodsprice">￥{{it.price}}</p>
-                          <p class="dateprice">￥{{it.market_price}}</p>
-                      </div>
-                  </div>
 
               </swiper>
 
           </div>
-          <centerbox class="centerbottom"></centerbox>
-          <centerbox class="centerbottom"></centerbox>
+          <centerbox id='2120000100000000662' :offsettop='top'></centerbox>
+          <centerbox id='2035000100000000011' :offsettop='top'></centerbox>
+          <centerbox id='2040000100000000746' :offsettop='top'></centerbox>
+          <centerbox id='2041000100000000652' :offsettop='top'></centerbox>
+          <centerbox id='2041000100000000651' :offsettop='top'></centerbox>
+          <centerbox id='2042000100000000571' :offsettop='top' datalistlength='2' class="nowhite"></centerbox>
+
       </div>
+      <list ref="top" :offsettop='top'></list>
   </div>
 </template>
 <script>
 import Axios from 'axios'
 import centerbox from '@/views/qingcang/Centerbox'
 import swiper from '@/views/qingcang/Swiper'
+import list from '@/views/qingcang/qingcanglist'
 export default {
   data () {
     return {
       myImgurl: '',
-      list: [],
-      swiperList1: [],
-      swiperList2: [],
-      swiperList3: [],
+
+      swiperList: [],
+
       totalCount: 0,
-      pageColor: ''
+      pageColor: '',
+      iscreate: false,
+      top: 0
     }
   },
-  mounted () {
+  async mounted () {
     // header
-    Axios({
+    var res = await Axios({
       url: 'wh/data/rmc/zebra/v1/446076/7d927402-d665-4024-8117-c10ae68e3c17.json',
       headers: {
         'Conten-Type': 'aplication/json'
       }
-    }).then(res => {
-      this.myImgurl = JSON.parse(res.data['5441132116'].moqieDataWl[0].jsonStr).imgSrc
     })
+    this.myImgurl = JSON.parse(res.data['5441132116'].moqieDataWl[0].jsonStr).imgSrc
     // swiper
-    Axios({
+    var date = await Axios({
       url: 'https://www.mei.com/appapi/clearance/clearanceNewArrival/v3'
-    }).then(res => {
-      this.totalCount = res.data.result.totalCount
-      this.list = res.data.result.categoryProductList
-      for (var i = 0; i < this.list.length; i++) {
-        if (i < 3) {
-          this.swiperList1.push(this.list[i])
-        } else if (i >= 3 && i < 6) {
-          this.swiperList2.push(this.list[i])
-        } else if (i >= 6 && i < 9) {
-          this.swiperList3.push(this.list[i])
-        }
-      }
     })
+    this.totalCount = date.data.result.totalCount
+    this.swiperList = date.data.result.categoryProductList
+
+    this.iscreate = true
+  },
+  updated () {
+    this.top = this.$refs.top.$el.offsetTop
   },
   components: {
     centerbox,
-    swiper
+    swiper,
+    list
+  },
+  methods: {
+    // 轮播跳转
+    handlePush (id) {
+      console.log(1111)
+      this.top = this.$refs.top.$el.offsetTop
+      this.$router.push(`/qingcang/good${id}`)
+      // console.log(this.$refs.top.$el.clientHeight)
+
+      //  document.body.scrollTop = this.$refs.top.$el.clientHeight+'px'
+      document.documentElement.scrollTop = this.top
+    }
   }
 }
 </script>
@@ -168,7 +153,7 @@ export default {
             }
           }
         }
-        .swiper-slide{
+        .swiper{
           display: flex;
           justify-content: space-around;
            .swiperbox{
@@ -205,12 +190,30 @@ export default {
               margin-bottom: 0.3rem
             }
           }
-        }
-        .centerbottom{
-          width: 100%;
 
-          overflow: hidden;
         }
+        /deep/ .swiper-pagination-bullet {
+            width: 6px;
+            height: 6px;
+            display: inline-block;
+            border-radius:0;
+            background: #000;
+            opacity: .1;
+        }
+        /deep/ .swiper-pagination-bullet-active {
+            width: 6px;
+            height: 6px;
+            display: inline-block;
+            border-radius:0;
+            background: #000;
+            opacity: .6;
+        }
+        .nowhite{
+          /deep/ p{
+            margin-bottom: 0;
+          }
+        }
+
       }
   }
 </style>
