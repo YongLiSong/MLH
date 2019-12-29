@@ -44,7 +44,6 @@ export default {
   methods: {
     handleClick (id) {
       this.$router.push(`/Detail/${id}`)
-      console.log(id)
     },
     handleGood () {
       this.$router.push('/qingcang/good')
