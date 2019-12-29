@@ -18,6 +18,8 @@
 </template>
 <script>
 import Axios from 'axios'
+import Vue from 'vue'
+var bus = new Vue()
 export default {
   data () {
     return {
@@ -50,6 +52,8 @@ export default {
 
       //  document.body.scrollTop = this.$refs.top.$el.clientHeight+'px'
       document.documentElement.scrollTop = this.offsettop
+
+      bus.$emit('qiehuangoods')
     }
   }
 }

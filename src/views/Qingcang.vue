@@ -39,6 +39,7 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import Axios from 'axios'
 import centerbox from '@/views/qingcang/Centerbox'
 import swiper from '@/views/qingcang/Swiper'
@@ -73,9 +74,9 @@ export default {
     this.swiperList = date.data.result.categoryProductList
 
     this.iscreate = true
-  },
-  updated () {
-    this.top = this.$refs.top.$el.offsetTop
+    this.$nextTick(() => {
+      this.top = this.$refs.top.$el.offsetTop
+    })
   },
   components: {
     centerbox,
@@ -85,13 +86,12 @@ export default {
   methods: {
     // 轮播跳转
     handlePush (id) {
-      console.log(1111)
-      this.top = this.$refs.top.$el.offsetTop
       this.$router.push(`/qingcang/good${id}`)
       // console.log(this.$refs.top.$el.clientHeight)
 
       //  document.body.scrollTop = this.$refs.top.$el.clientHeight+'px'
       document.documentElement.scrollTop = this.top
+      this.$refs.top.handleClick()
     }
   }
 }

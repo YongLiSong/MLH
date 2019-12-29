@@ -38,9 +38,11 @@
 
 import { Indicator } from 'mint-ui'
 import Vue from 'vue'
-
 import axios from 'axios'
+var bus = new Vue()
+
 export default {
+
   data () {
     return {
       navlist: [],
@@ -56,9 +58,10 @@ export default {
     }
   },
   props: ['offsettop'],
-  async mounted () {
+  created () {
     this.information = this.$route.params.myid.replace('good', '')
-
+  },
+  async mounted () {
     // 方框页面
     var res = await axios({
       url: 'https://www.mei.com/appapi/clearance/clearanceCategoryList/v3'
@@ -70,8 +73,6 @@ export default {
     })
     this.goodslist = date.data.products
     window.onscroll = this.handleScroll
-
-    this.handleClick()
   },
   methods: {
     // 吸顶
@@ -84,23 +85,24 @@ export default {
       }
     },
     // 点击切换页面信息
-    handleClick () {
+    async handleClick () {
+      document.documentElement.scrollTop = this.offsettop
       this.information = this.$route.params.myid.replace('good', '')
+      // console.log(this.information)
       this.num = 1
-      axios({
+      let res = await axios({
         url: `https://www.mei.com/appapi/clearance/clearanceCategoryProductList/v3?pageIndex=1&sort&key&brandNames&firstCategoryId=${this.information}&frontFirstCategoryIds&frontSecondCategoryIds&thirdCategories&productSizes&cmsId&size`
-      }).then(res => {
-        this.goodslist = res.data.products
-        this.page = res.data.totalPages
       })
+      this.goodslist = res.data.products
+      this.page = res.data.totalPages
     },
     loadMore () {
-      this.loading = true
       ++this.num
       if (this.num > this.page) {
         this.isloadshow = false
         return
       }
+      this.loading = true
       this.isloadshow = true
       // Indicator.open({
       //   text: '加载中...',
@@ -111,7 +113,7 @@ export default {
         url: `https://www.mei.com/appapi/clearance/clearanceCategoryProductList/v3?pageIndex=${this.num}&sort&key&brandNames&firstCategoryId=${this.information}&frontFirstCategoryIds&frontSecondCategoryIds&thirdCategories&productSizes&cmsId&size`
       }).then(res => {
         this.goodslist = [...this.goodslist, ...res.data.products]
-        this.loading = false
+
         this.isloadshow = false
         this.loading = false
 
