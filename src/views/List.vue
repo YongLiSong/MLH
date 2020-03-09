@@ -11,7 +11,7 @@
         </ul>
         <div></div>
         <div>
-          colist
+          colin-list
         </div>
     </div>
 </template>
