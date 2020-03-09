@@ -9,6 +9,9 @@
                 <img :src="item.imageUrl" alt="">
             </li>
         </ul>
+        <div>
+          colin---SSSS
+        </div>
     </div>
 </template>
 
