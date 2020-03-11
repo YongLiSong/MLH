@@ -22,7 +22,10 @@ export default {
         el: '.swiper-pagination',
         clickable: true,
         color: 'black'
-      }
+      },
+      loop: true,
+      slidesPerGroup: 3,
+      slidesPerView: 3
 
     })
   }
@@ -34,6 +37,7 @@ export default {
      border-radius: 0%;
      border-top-left-radius:0%;
      background: red;
+
    }
 
 </style>

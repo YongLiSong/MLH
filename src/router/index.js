@@ -91,7 +91,7 @@ const routes = [
   },
 
   {
-    path: '/qingcang',
+    path: '/qingcang/:myid',
     component: Qingcang
   },
   {
