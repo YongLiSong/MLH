@@ -1,20 +1,10 @@
 <template>
   <div>
-    <!-- <div class="bannerbox">
-      <div class="swiper-slide" v-for="data in bannerlist" :key="data.di">
-        <img :src="data.main_image"/>
-        <div class="bannercontent">
-          <h2>{{ data.main_title }}</h2>
-          <span>{{ data.sub_title }}</span>
-          <span>{{ data.description }}</span>
-        </div>
-      </div>
-    </div> -->
     <div v-if="list.length" class="listbox">
        <ul  v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">
-        <li v-for="data2 in list" :key="data2.eventId" @click="golist(data2.eventId)">
+        <li v-for="data2 in $store.state.bannerlist" :key="data2.eventId" @click="golist(data2.eventId)">
           <img :src="data2.imageUrl" :alt="data2.englishName">
           <div class="listcontent">
             <h3>{{data2.englishName}}</h3>
@@ -44,33 +34,31 @@ export default {
     loadMore () {
       this.num++
       if (this.num > this.info.totalPages) {
-
+        return
       }
-      // Axios({
-      //   url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=cosmetics&pageIndex=${this.num}&timestamp=1576999724498&summary=6932d4fa20384e3890e5ac6b3b7d4f8f&platform_code=H5`
-      // }).then(res => {
-      //   this.list = [...this.list, ...res.data.eventList]
-      // })
+      Axios({
+        url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=cosmetics&pageIndex=${this.num}&timestamp=1576999724498&summary=6932d4fa20384e3890e5ac6b3b7d4f8f&platform_code=H5`
+      }).then(res => {
+        this.list = [...this.list, ...res.data.eventList]
+      })
     },
     golist (id) {
       this.$router.push(`/list/${id}`)
     }
   },
   mounted () {
-    this.list = this.$store.state.bannerlist
-    console.log(this.$store.state.bannerlist)
     Axios({
       url: 'http://www.meihigo.hk/appapi/home/mktBannerApp/v3?silo_id=2013000100000000003&platform_code=PLATEFORM_H5'
     }).then(res => {
       this.bannerlist = res.data.banners
     })
-    // Axios({
-    //   url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=cosmetics&pageIndex=${this.num}&timestamp=1576999724498&summary=6932d4fa20384e3890e5ac6b3b7d4f8f&platform_code=H5`
-    // }).then(res => {
-    //   this.list = res.data.eventList
-    //   this.info = res.data
-    //   // console.log(this.list)
-    // })
+    Axios({
+      url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=cosmetics&pageIndex=${this.num}&timestamp=1576999724498&summary=6932d4fa20384e3890e5ac6b3b7d4f8f&platform_code=H5`
+    }).then(res => {
+      this.list = res.data.eventList
+      this.info = res.data
+      // console.log(this.list)
+    })
   }
 }
 </script>

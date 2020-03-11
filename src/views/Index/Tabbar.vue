@@ -27,32 +27,32 @@ export default {
         },
         {
           path: '/index/crossborder',
-          id: '2013000100000000011',
+          id: 'crossborder',
           name: '海外'
         },
         {
           path: '/index/women',
-          id: '2013000100000000001',
+          id: 'women',
           name: '女士'
         },
         {
           path: '/index/men',
-          id: '2013000100000000002',
+          id: 'men',
           name: '男士'
         },
         {
           path: '/index/cosmetics',
-          id: '2013000100000000003',
+          id: 'cosmetics',
           name: '美妆'
         },
         {
           path: '/index/lifestyle',
-          id: '2013000100000000004',
+          id: 'lifestyle',
           name: '家居'
         },
         {
           path: '/index/kids',
-          id: '2013000100000000005',
+          id: 'kids',
           name: '婴童'
         },
         {

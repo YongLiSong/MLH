@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     bannerlist: [],
     searchlistisShow: false,
-    allShow: true
+    allShow: true,
+    indexList: []
   },
   mutations: {
     geibannerid (state, bannerlist) {
@@ -25,9 +26,10 @@ export default new Vuex.Store({
   actions: {
     getNavId (store, id) {
       Axios({
-        url: `http://www.meihigo.hk/appapi/home/mktBannerApp/v3?silo_id=${id}&platform_code=PLATEFORM_H5`
+        url: `http://www.meihigo.hk/appapi/silo/eventForH5?categoryId=${id}&pageIndex=1&timestamp=1577415486052&summary=90ae005cbed75895bae8c6dc0a72892f&platform_code=H5`
       }).then(res => {
-        store.commit('geibannerid', res.data.banners)
+        store.commit('geibannerid', res.data.eventList)
+        console.log(res.data.eventList)
       })
     }
   },

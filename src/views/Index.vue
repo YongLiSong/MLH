@@ -5,14 +5,14 @@
         <tabbar></tabbar>
       </div>
       <div class="ntn_height" id="isHeight" :class="{'isHeight' : isHeight}"></div>
-        <router-view v-if="$store.state.allShow"></router-view>
+        <indexlist v-if="$store.state.allShow"></indexlist>
     </div>
 </template>
 <script>
 import Axios from 'axios'
 import tabbar from '@/views/Index/Tabbar'
 import seatch from '@/components/Search'
-
+import indexlist from '@/views/Index/Cosmetics'
 export default {
   data () {
     return {
@@ -47,7 +47,8 @@ export default {
   },
   components: {
     tabbar,
-    seatch
+    seatch,
+    indexlist
   }
 }
 </script>

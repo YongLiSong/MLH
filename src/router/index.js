@@ -18,6 +18,7 @@ import Women from '@/views/Index/Women'
 import Lifestyle from '@/views/Index/Lifestyle'
 import Tuijian from '@/views/Index/Tuijian'
 import Qingcang from '@/views/Qingcang'
+import Allchild from '@/views/Index/Allchild'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,10 @@ const routes = [
       {
         path: 'women',
         component: Women
+      },
+      {
+        path: 'child',
+        component: Allchild
       },
       {
         path: '/index',
